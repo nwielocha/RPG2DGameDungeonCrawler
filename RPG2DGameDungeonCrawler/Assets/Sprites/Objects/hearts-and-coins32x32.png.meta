@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 5b8a1f25a87085c41b87de1d2223847b
+guid: a59ca9008eca3494c958a42f0679652d
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -141,145 +141,253 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: Buttons_0
+      name: hearts-and-coins32x32_0
       rect:
         serializedVersion: 2
-        x: 18
-        y: 2
-        width: 12
-        height: 12
+        x: 0
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: e32b26f4962f8d44ea44fb17fb8ccfac
-      internalID: -1378579594
+      spriteID: 026967a483b647d41b5620855d77483b
+      internalID: -889264096
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buttons_1
+      name: hearts-and-coins32x32_1
       rect:
         serializedVersion: 2
-        x: 34
-        y: 2
-        width: 12
-        height: 10
+        x: 32
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 78a0ef85d861a004cb246cb3a2a370f5
-      internalID: -201623600
+      spriteID: eb774b02062a7d04b8b9ed7f232743d8
+      internalID: -1048135309
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buttons_2
+      name: hearts-and-coins32x32_2
       rect:
         serializedVersion: 2
-        x: 50
-        y: 2
-        width: 12
-        height: 12
+        x: 64
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 32d23093bcdbb3641b5b623bcd28c291
-      internalID: -1156032363
+      spriteID: f38f02ac2b668f347978ed6a775c55b2
+      internalID: 1389910565
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buttons_3
+      name: hearts-and-coins32x32_3
       rect:
         serializedVersion: 2
-        x: 66
-        y: 2
-        width: 12
-        height: 10
+        x: 96
+        y: 96
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f22e8ab7ebddf9f439fb86aa32e0e392
-      internalID: -1401193087
+      spriteID: d9acf9d0ca385dc4b9692b925e689b68
+      internalID: 1789213095
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buttons_4
+      name: hearts-and-coins32x32_4
       rect:
         serializedVersion: 2
-        x: 80
-        y: 1
-        width: 14
-        height: 13
+        x: 0
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 0, y: 5.5}
-        - {x: -2, y: 6.5}
-        - {x: -6, y: 6.5}
-        - {x: -7, y: 5.5}
-        - {x: -7, y: 0.5}
-        - {x: -3, y: -1.5}
-        - {x: -7, y: -6.5}
-        - {x: 7, y: -6.5}
-        - {x: 7, y: -3.5}
-        - {x: 2, y: 0.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 6c3f7f8d215cee743992920ed77904c4
-      internalID: -728633074
+      spriteID: c25ae32e4fb1c9245b7f9320795694c8
+      internalID: -1432008722
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: Buttons_5
+      name: hearts-and-coins32x32_5
       rect:
         serializedVersion: 2
-        x: 98
-        y: 1
-        width: 14
-        height: 13
+        x: 32
+        y: 64
+        width: 32
+        height: 32
       alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
-      physicsShape:
-      - - {x: 0, y: 6.5}
-        - {x: -1, y: 1.5}
-        - {x: -7, y: -3.5}
-        - {x: -7, y: -6.5}
-        - {x: 7, y: -6.5}
-        - {x: 3, y: -2.5}
-        - {x: 7, y: -0.5}
-        - {x: 7, y: 6.5}
+      physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: d5b118b0e559196419bbc76ac6ccfcf3
-      internalID: -1116803250
+      spriteID: b0e15bcc4fac86e4895a7f562e7c6e5a
+      internalID: 1572808217
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts-and-coins32x32_6
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6ad3d78768ef0004db3c8780e43d5206
+      internalID: 547348031
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts-and-coins32x32_7
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 64
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 82d3279380c6eb94b8d2254c35899988
+      internalID: -2141840932
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts-and-coins32x32_8
+      rect:
+        serializedVersion: 2
+        x: 0
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: e50c2d20d4c8e28469a80af9b6ccb649
+      internalID: 1683403950
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts-and-coins32x32_9
+      rect:
+        serializedVersion: 2
+        x: 32
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: debdbb6baef37ba4b87ef2e5475430e8
+      internalID: -738719000
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts-and-coins32x32_10
+      rect:
+        serializedVersion: 2
+        x: 64
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 8c2f4447331077644991e3e209750f22
+      internalID: -1862401825
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: hearts-and-coins32x32_11
+      rect:
+        serializedVersion: 2
+        x: 96
+        y: 32
+        width: 32
+        height: 32
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1432319edea5dbe468fa096543c2fd3a
+      internalID: 1500064730
       vertices: []
       indices: 
       edges: []
@@ -295,12 +403,18 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      Buttons_0: -1378579594
-      Buttons_1: -201623600
-      Buttons_2: -1156032363
-      Buttons_3: -1401193087
-      Buttons_4: -728633074
-      Buttons_5: -1116803250
+      hearts-and-coins32x32_0: -889264096
+      hearts-and-coins32x32_1: -1048135309
+      hearts-and-coins32x32_10: -1862401825
+      hearts-and-coins32x32_11: 1500064730
+      hearts-and-coins32x32_2: 1389910565
+      hearts-and-coins32x32_3: 1789213095
+      hearts-and-coins32x32_4: -1432008722
+      hearts-and-coins32x32_5: 1572808217
+      hearts-and-coins32x32_6: 547348031
+      hearts-and-coins32x32_7: -2141840932
+      hearts-and-coins32x32_8: 1683403950
+      hearts-and-coins32x32_9: -738719000
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0
