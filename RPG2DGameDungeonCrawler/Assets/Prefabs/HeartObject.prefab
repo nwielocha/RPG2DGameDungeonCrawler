@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 360805174449242175}
   - component: {fileID: 360805174449242174}
   - component: {fileID: 3016273338023282428}
+  - component: {fileID: -3576665471052285683}
   m_Layer: 7
   m_Name: HeartObject
   m_TagString: CanBePickedUp
@@ -132,11 +133,24 @@ PolygonCollider2D:
   m_AutoTiling: 0
   m_Points:
     m_Paths:
-    - - {x: -0.09375, y: 0.21875}
-      - {x: -0.21875, y: 0.09375}
-      - {x: -0.21875, y: 0}
-      - {x: 0, y: -0.21875}
-      - {x: 0.03125, y: -0.21875}
-      - {x: 0.25, y: 0}
-      - {x: 0.25, y: 0.09375}
-      - {x: 0.125, y: 0.21875}
+    - - {x: -0.08134389, y: 0.1856674}
+      - {x: -0.17739654, y: 0.08961475}
+      - {x: -0.17739654, y: 0.0041353703}
+      - {x: 0, y: -0.1856674}
+      - {x: 0.03125, y: -0.18980265}
+      - {x: 0.20864654, y: 0.008270621}
+      - {x: 0.22518802, y: 0.09375}
+      - {x: 0.11672926, y: 0.1856674}
+--- !u!114 &-3576665471052285683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 360805174449242161}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 92f572bb9403f5941a786294e411712c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 11400000, guid: 7ae8d24e839ef004fa9dcb7bb00f8814, type: 2}
