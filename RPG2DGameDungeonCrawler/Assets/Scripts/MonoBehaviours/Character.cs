@@ -4,6 +4,6 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-	public int hitPoints; // Biezaca liczba pkt zdrowia postaci
-	public int maxHitPoints; // Maksymalna liczba pkt (limit)
+	public float health; // Biezaca liczba pkt zdrowia postaci
+	public float maxHealth; // Maksymalna liczba pkt (limit)
 }

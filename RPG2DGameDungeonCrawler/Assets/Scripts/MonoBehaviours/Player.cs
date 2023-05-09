@@ -30,9 +30,9 @@ public class Player : Character
 		}
 	}
 
-	public void AdjustHitPoints(int amount)
+	public void AdjustHitPoints(float amount)
 	{
-		hitPoints = hitPoints + amount;
-		print("Nowe punkty: " + amount + ". Razem: " + hitPoints);
+		health += amount;
+		print("Nowe punkty: " + amount + ". Razem: " + health);
 	}
 }
