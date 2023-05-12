@@ -2,11 +2,11 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-	public HitPoints hitPoints;
+	public Points hitPoints;
 	public float maxHitPoints;
 	public float startingHitPoints;
 
-	public ManaPoints manaPoints;
+	public Points manaPoints;
 	public float maxManaPoints;
 	public float startingManaPoints;
 }

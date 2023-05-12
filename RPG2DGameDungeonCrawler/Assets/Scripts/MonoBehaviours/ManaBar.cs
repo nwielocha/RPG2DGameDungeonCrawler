@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class ManaBar : MonoBehaviour
 {
-	public ManaPoints manaPoints;
+	public Points manaPoints;
 	[HideInInspector]
 	public Player character;
 	public Image meterImage;

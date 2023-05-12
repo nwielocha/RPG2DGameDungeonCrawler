@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-	public HitPoints hitPoints;
+	public Points hitPoints;
 	[HideInInspector]
 	public Player character;
 	public Image[] heartsImage;
