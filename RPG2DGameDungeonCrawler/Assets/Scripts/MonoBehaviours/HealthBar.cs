@@ -6,7 +6,7 @@ public class HealthBar : MonoBehaviour
 	public Points hitPoints;
 	[HideInInspector]
 	public Player character;
-	public Image[] heartsImage;
+	public Image[] heartImages;
 	public Sprite fullHeart, emptyHeart;
 	float maxHitPoints;
 
@@ -22,17 +22,17 @@ public class HealthBar : MonoBehaviour
 			if (hitPoints.value > maxHitPoints)
 				hitPoints.value = maxHitPoints;
 
-			for (int i = 0; i < heartsImage.Length; i++)
+			for (int i = 0; i < heartImages.Length; i++)
 			{
 				if (i < hitPoints.value)
-					heartsImage[i].sprite = fullHeart;
+					heartImages[i].sprite = fullHeart;
 				else
-					heartsImage[i].sprite = emptyHeart;
+					heartImages[i].sprite = emptyHeart;
 				
 				if (i < maxHitPoints)
-					heartsImage[i].enabled = true;
+					heartImages[i].enabled = true;
 				else
-					heartsImage[i].enabled = false;
+					heartImages[i].enabled = false;
 			}
 		}
 		
