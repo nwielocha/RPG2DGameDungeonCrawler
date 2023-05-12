@@ -1,9 +1,12 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-	public float health; // Biezaca liczba pkt zdrowia postaci
-	public float maxHealth; // Maksymalna liczba pkt (limit)
+	public HitPoints hitPoints;
+	public float maxHitPoints;
+	public float startingHitPoints;
+
+	public ManaPoints manaPoints;
+	public float maxManaPoints;
+	public float startingManaPoints;
 }

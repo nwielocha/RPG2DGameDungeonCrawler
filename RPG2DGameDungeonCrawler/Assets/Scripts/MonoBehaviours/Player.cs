@@ -1,38 +1,79 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Player : Character 
 {
+	public HealthBar healthBarPrefab;
+	HealthBar healthBar;
+	public ManaBar manaBarPrefab;
+	ManaBar manaBar;
+
+	void Start()
+	{
+		hitPoints.value = startingHitPoints;
+		manaPoints.value = startingManaPoints;
+
+		healthBar = Instantiate(healthBarPrefab);
+		manaBar = Instantiate(manaBarPrefab);
+
+		healthBar.character = this;
+		manaBar.character = this;
+	}
+
 	void OnTriggerEnter2D(Collider2D collision)
 	{
-		Item hitObject = collision.gameObject.GetComponent<Consumable>().item;
 		if (collision.gameObject.CompareTag("CanBePickedUp"))
 		{
+			Item hitObject = collision.gameObject.GetComponent<Consumable>().item;
 			if (hitObject != null)
 			{
 				print("Kolizja: " +  hitObject.name);
+				bool shouldDisappear = false;
 				switch (hitObject.itemType)
 				{
 					case Item.ItemType.COIN:
+						shouldDisappear = true;
 						break;
 					case Item.ItemType.HEALTH:
-						AdjustHitPoints(hitObject.quantity);
+						shouldDisappear = AdjustHitPoints(hitObject.quantity);
+						break;
+					case Item.ItemType.MANA:
+						shouldDisappear = AdjustManaPoints(hitObject.quantity);
 						break;
 					default: 
 						break;
-
 				}
 
-				collision.gameObject.SetActive(false);
+				if (shouldDisappear)
+				{
+					collision.gameObject.SetActive(false);
+				}
 			}
 		}
 	}
 
-	public void AdjustHitPoints(float amount)
+	public bool AdjustHitPoints(int amount)
 	{
-		health += amount;
-		print("Nowe punkty: " + amount + ". Razem: " + health);
+		if (hitPoints.value < maxHitPoints)
+		{
+			hitPoints.value += amount;
+			print("Nowe punkty: " + amount + ". Razem: " + hitPoints.value);
+
+			return true;
+		}
+		
+		return false;
+	}
+
+	public bool AdjustManaPoints(int amount)
+	{
+		if (manaPoints.value < maxManaPoints)
+		{
+			manaPoints.value += amount;
+			print("Nowe punkty: " + amount + ". Razem: " + hitPoints.value);
+
+			return true;
+		}
+
+		return false;
 	}
 }
