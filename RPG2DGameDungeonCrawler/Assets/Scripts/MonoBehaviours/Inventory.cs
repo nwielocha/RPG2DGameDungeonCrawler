@@ -36,8 +36,8 @@ public class Inventory : MonoBehaviour
 			if (items[i] != null && items[i].itemType == itemToAdd.itemType && itemToAdd.stackable == true)
 			{
 				// Dodanie rzeczy do istniejacego pojemnikaitems
-				items[i].quantity = itemToAdd.quantity + 1;
-				Slot slotScript = slots[i].gameObject.GetComponent<Slot>();
+				items[i].quantity += 1;
+				Slot slotScript = slots[i].GetComponent<Slot>();
 				Text quantityText = slotScript.qtyText;
 				quantityText.enabled = true;
 				quantityText.text = items[i].quantity.ToString();

@@ -11,13 +11,12 @@ public class Player : Character
 
 	void Start()
 	{
-		inventory = Instantiate(inventoryPrefab);
-
 		hitPoints.value = startingHitPoints;
 		manaPoints.value = startingManaPoints;
 
 		healthBar = Instantiate(healthBarPrefab);
 		manaBar = Instantiate(manaBarPrefab);
+		inventory = Instantiate(inventoryPrefab);
 
 		healthBar.character = this;
 		manaBar.character = this;

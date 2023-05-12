@@ -429,7 +429,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   hitPoints: {fileID: 11400000, guid: c20f7d3d55610d349b7023b7783ba6cd, type: 2}
   character: {fileID: 0}
-  heartsImage:
+  heartImages:
   - {fileID: 5223553718377586487}
   - {fileID: 5223553716773944625}
   - {fileID: 5223553718128005989}

@@ -183,10 +183,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hitPoints: {fileID: 11400000, guid: c20f7d3d55610d349b7023b7783ba6cd, type: 2}
-  maxHitPoints: 10
-  startingHitPoints: 6
+  maxHitPoints: 4
+  startingHitPoints: 2
   manaPoints: {fileID: 11400000, guid: 651e36458914d2e4a80dbe8b1f0a0ed5, type: 2}
-  maxManaPoints: 100
-  startingManaPoints: 25
-  healthBarPrefab: {fileID: 0}
-  manaBarPrefab: {fileID: 1218745381, guid: 3c99f565bfe4d3b44942f96584e0637b, type: 3}
+  maxManaPoints: 10
+  startingManaPoints: 6
+  healthBarPrefab: {fileID: 1963622100, guid: e5af88e7611cbec4fabd9406df4c2880, type: 3}
+  manaBarPrefab: {fileID: 4515814832316820355, guid: 3c99f565bfe4d3b44942f96584e0637b, type: 3}
+  inventoryPrefab: {fileID: 4239229947770089538, guid: 161af59094adf0f46a67b4e5867779cc, type: 3}
