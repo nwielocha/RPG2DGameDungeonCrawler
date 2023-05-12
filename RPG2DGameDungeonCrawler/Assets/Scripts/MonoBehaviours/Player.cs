@@ -1,25 +1,20 @@
+using System.Collections;
 using UnityEngine;
 
 public class Player : Character 
 {
+	public Points hitPoints;
+	public Points manaPoints;
 	public HealthBar healthBarPrefab;
-	HealthBar healthBar;
 	public ManaBar manaBarPrefab;
-	ManaBar manaBar;
 	public Inventory inventoryPrefab;
+	HealthBar healthBar;
+	ManaBar manaBar;
 	Inventory inventory;
 
-	void Start()
+	private void OnEnable()
 	{
-		hitPoints.value = startingHitPoints;
-		manaPoints.value = startingManaPoints;
-
-		healthBar = Instantiate(healthBarPrefab);
-		manaBar = Instantiate(manaBarPrefab);
-		inventory = Instantiate(inventoryPrefab);
-
-		healthBar.character = this;
-		manaBar.character = this;
+		ResetCharacter();
 	}
 
 	void OnTriggerEnter2D(Collider2D collision)
@@ -78,5 +73,44 @@ public class Player : Character
 		}
 
 		return false;
+	}
+
+	public override void ResetCharacter()
+	{
+		inventory = Instantiate(inventoryPrefab);
+		healthBar = Instantiate(healthBarPrefab);
+		manaBar = Instantiate(manaBarPrefab);
+
+		healthBar.character = this;
+		manaBar.character = this;
+		
+		hitPoints.value = startingHitPoints;
+		manaPoints.value = startingManaPoints;
+	}
+
+	public override IEnumerator DamageCharacter(int damage, float interval)
+	{
+		while (true)
+		{
+			hitPoints.value -= damage;
+			if (hitPoints.value < float.Epsilon)
+			{
+				KillCharacter();
+				break;
+			}
+
+			if (interval > float.Epsilon)
+				yield return new WaitForSeconds(interval);
+			else
+				break;
+		}
+	}
+
+	public override void KillCharacter()
+	{
+		base.KillCharacter();
+		Destroy(healthBar.gameObject);
+		Destroy(manaBar.gameObject);
+		Destroy(inventory.gameObject);
 	}
 }
