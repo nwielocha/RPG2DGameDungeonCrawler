@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5673751328446391315}
   - component: {fileID: 5673751328446391314}
   - component: {fileID: 1237910403}
+  - component: {fileID: 1552796309}
   m_Layer: 6
   m_Name: PlayerObject
   m_TagString: Player
@@ -169,3 +170,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementSpeed: 3
+--- !u!114 &1552796309
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5673751328446391318}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a04e1aac439965e4db1d109a8fa16ec0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoints: 4
+  startingHitPoints: 2
+  maxManaPoints: 10
+  startingManaPoints: 6
+  hitPoints: {fileID: 11400000, guid: c20f7d3d55610d349b7023b7783ba6cd, type: 2}
+  manaPoints: {fileID: 11400000, guid: 651e36458914d2e4a80dbe8b1f0a0ed5, type: 2}
+  healthBarPrefab: {fileID: 1963622100, guid: e5af88e7611cbec4fabd9406df4c2880, type: 3}
+  manaBarPrefab: {fileID: 4515814832316820355, guid: 3c99f565bfe4d3b44942f96584e0637b, type: 3}
+  inventoryPrefab: {fileID: 4239229947770089538, guid: 161af59094adf0f46a67b4e5867779cc, type: 3}

@@ -11,7 +11,11 @@ GameObject:
   - component: {fileID: 8510481645752400583}
   - component: {fileID: 8510481645752400580}
   - component: {fileID: 8510481645752400581}
+  - component: {fileID: 848004828564415717}
   - component: {fileID: 8510481645752400578}
+  - component: {fileID: 3901065256689542088}
+  - component: {fileID: 501375753}
+  - component: {fileID: 7276638278346885197}
   m_Layer: 8
   m_Name: EnemyObject
   m_TagString: Enemy
@@ -107,6 +111,32 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!61 &848004828564415717
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8510481645752400582}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 0.4375, y: 0.65625}
+    newSize: {x: 0.4375, y: 0.65625}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 0.4375, y: 0.65625}
+  m_EdgeRadius: 0
 --- !u!50 &8510481645752400578
 Rigidbody2D:
   serializedVersion: 4
@@ -127,4 +157,53 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
+--- !u!114 &3901065256689542088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8510481645752400582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3677eeef9801c824db09429fbd294e61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHitPoints: 2
+  startingHitPoints: 2
+  maxManaPoints: 0
+  startingManaPoints: 0
+  damageStrength: 1
+--- !u!58 &501375753
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8510481645752400582}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 1
+--- !u!114 &7276638278346885197
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8510481645752400582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4004a4021411ab34f8192d986da64418, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pursuitSpeed: 1.4
+  wanderSpeed: 0.8
+  directionChangeInterval: 3
+  followPlayer: 1
