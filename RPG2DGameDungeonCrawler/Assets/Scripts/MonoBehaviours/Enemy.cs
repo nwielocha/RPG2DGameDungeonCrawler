@@ -38,6 +38,7 @@ public class Enemy : Character
 	{
 		if (collision.gameObject.CompareTag("Player"))
 		{
+			print("Kolizja z " +  collision.gameObject.name);
 			Player player = collision.gameObject.GetComponent<Player>();
 			if (damageCoroutine == null)
 			{
