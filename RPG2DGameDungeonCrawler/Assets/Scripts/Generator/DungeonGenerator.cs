@@ -1,113 +1,94 @@
 using System;
+using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
-
-public enum Directions{
-    Up = 1,
-    Right = 10,
-    Down = -1,
-    Left = -10
-}
-
-public class DungeonGenerator : IGenerator, IObserver
+public class DungeonGenerator
 {
-    private const double _numberOfRoomsFactor = 2;
-    private const int _numberOfRoomsConstant = 12;
-    private const double _adjecentRoomsFactor = 0.20; 
-    public int _numberOfRooms;
-    private int _numberOfMainRooms;
-    private int _numberOfAdjecentRooms;
-    private List<Room> _managedRooms;
-    private System.Random randomGenerator = new System.Random();
+    private DungeonController _controller;
+    private uint _mainRooms;
+    private uint _adjecentRooms;
 
-    public void UpdateObserver(ISubject subject){
-        if(subject is Dungeon){
-            (this._numberOfRooms, this._numberOfMainRooms, this._numberOfAdjecentRooms) = CalculateNumberOfRooms((subject as Dungeon).LevelNumber);
-            Generate();
-        }
+    public DungeonGenerator(DungeonController controller)
+    {
+        _controller = controller;
     }
 
-    private (int,int,int) CalculateNumberOfRooms(int level){
-        int total = (int) Math.Floor(level * _numberOfRoomsFactor) + _numberOfRoomsConstant;
-        int adjecent = (int) Math.Floor(total * _adjecentRoomsFactor);
-        int main = total - adjecent;
-        return (total, main, adjecent);
-    }
-
-    public void Generate(){
-        // Creating starting room object
-        Room startingRoom = new Room(0,0);
+    public void GenerateRooms()
+    {
+        (_mainRooms, _adjecentRooms) = PartitionRooms();
         
-        // Clearing rooms list and adding to it starting room
-        if(_managedRooms != null) _managedRooms = null;
-        _managedRooms = new List<Room>();
-        _managedRooms.Add(startingRoom);
-        Room currentRoom = startingRoom;
+        _controller.ClearAllRooms();
+        GenerateMainRooms();
+        GenerateAdjRooms();
+    }
 
-        // Starting generation of main rooms
-        int generated = 1;
-        do{
-            Room room = GenerateNext(currentRoom);
-            if(room != null){
-                currentRoom = room;
-                _managedRooms.Add(room);
+    private void GenerateMainRooms()
+    {
+        RoomComponent startingRoom = new RoomComponent(new Position(0, 0), RoomType.Start);
+        RoomComponent current = startingRoom;
+        _controller.AddRoom(startingRoom);
+        uint generated = 1;
+
+        do {
+            RoomComponent room = GenerateNextRoom(current.Pos);
+            if(room != null && _controller.CountNeighbours(room.Pos) <= 1)
+            {
+                _controller.AddRoom(room);
+                current = room;
                 generated++;
             }
-        }while(generated < _numberOfMainRooms && CountNeighbours(currentRoom) <= 3);
+        } while(generated < _mainRooms);
 
-        // Starting generation of adjecent rooms
-        generated = 0;
-        do{
-            
-            int adj = randomGenerator.Next(_numberOfAdjecentRooms - generated);
-            currentRoom = _managedRooms[randomGenerator.Next(_managedRooms.Count)];
-            int i = 0;
-            do{
-                Room room = GenerateNext(currentRoom);
-                if(room != null){
-                    currentRoom = room;
-                    _managedRooms.Add(room);
-                    i++;
-                }
-            }while(i < adj && CountNeighbours(currentRoom) <= 1);
-            generated += i;
-        }while(generated < _numberOfAdjecentRooms);
-
-        // Placing rooms on game map
-        foreach(Room room in _managedRooms){
-            foreach(Directions direction in (Directions[]) Enum.GetValues(typeof(Directions))){
-                AddDoor(room, direction);
-            }
-            room.PlaceOnMap();
-        }
+        RoomComponent lastRoom = _controller.GetRoom(_controller.CountRooms() - 1);
+        lastRoom.Type = RoomType.Boss;
     }
 
-    void AddDoor(Room room, Directions direction)
+    private void GenerateAdjRooms()
     {
-        int x = room.XCoord;
-        int y = room.YCoord;
-        int dir = (int) direction;
-        /*Room neighbour = _managedRooms.Find(r => (r.XCoord == x + dir / 10 && r.YCoord == y + dir % 10));
-        if(neighbour != null && !neighbour.doors.Any(d => ((int) d.direction == -dir))){
-            room.doors.Add(new Door(direction));
-        }*/
-        if(_managedRooms.Any(r => (r.XCoord == x + dir / 10 && r.YCoord == y + dir % 10))){
-            room.doors.Add(new Door(direction));
-        }
+        uint generated = 0;
+        RoomComponent current;
+
+        do {
+            uint partialNumber = (uint) Math.Floor((double) UnityEngine.Random.Range(1, _adjecentRooms - generated));
+            uint subGenerated = 0;
+            int index = (int) Math.Floor((double) UnityEngine.Random.Range(0, _controller.CountRooms() - 1));
+            current = _controller.GetRoom(index);
+            do {
+                RoomComponent room = GenerateNextRoom(current.Pos);
+                if(room != null)
+                {
+                    _controller.AddRoom(room);
+                    current = room;
+                    subGenerated++;
+                    generated++;
+                }
+            } while(subGenerated < partialNumber && _controller.CountNeighbours(current.Pos) <= 3);
+        } while(generated < _adjecentRooms);
+        
+        RoomComponent lastRoom = _controller.GetRoom(_controller.CountRooms() - 1);
+        lastRoom.Type = RoomType.Treasure;
     }
 
-    int CountNeighbours(Room currentRoom){
-        int x = currentRoom.XCoord;
-        int y = currentRoom.YCoord;
-        return (_managedRooms.FindAll(r => (r.XCoord == x + 1 && r.YCoord == y) || (r.XCoord == x && r.YCoord == y + 1) || (r.XCoord == x - 1 && r.YCoord == y) || (r.XCoord == x && r.YCoord == y - 1))).Count;
+    private RoomComponent GenerateNextRoom(Position pos)
+    {
+        Array directions = Enum.GetValues(typeof(Directions));
+        int index = UnityEngine.Random.Range(0, directions.Length - 1);
+        int rDir = (int) directions.GetValue(index);
+
+        if(!_controller.DoRoomExist(pos.x + rDir / 10, pos.y + rDir % 10))
+            return new RoomComponent(new Position(pos.x + rDir / 10, pos.y + rDir % 10), RoomType.Normal);
+        return null;
     }
 
-    public Room GenerateNext(Room currentRoom){
-        Array directionValues = Enum.GetValues(typeof(Directions));
-        int direction = (int) directionValues.GetValue(randomGenerator.Next(directionValues.Length));
-        if(_managedRooms.Find(r => r.XCoord == currentRoom.XCoord + direction / 10  && r.YCoord == currentRoom.YCoord + direction % 10) != null) return null;
-        return new Room(currentRoom.XCoord + direction / 10, currentRoom.YCoord + direction % 10);
+    private (uint, uint) PartitionRooms()
+    {
+        uint total = _controller.Dungeon.RoomsNumber;
+        double adjRoomsPercentage = 0.2;
+
+        uint adj = (uint) Math.Floor(total * adjRoomsPercentage);
+        uint main = total - adj;
+
+        return (main, adj);
     }
 }
