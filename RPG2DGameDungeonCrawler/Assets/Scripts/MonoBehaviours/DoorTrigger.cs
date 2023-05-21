@@ -6,6 +6,13 @@ public class DoorTrigger : MonoBehaviour
 {
     private bool triggerActive = false;
     public bool isUnlocked;
+    private Character _playerController;
+
+    void Start()
+    {
+        GameObject playerObject = GameObject.FindWithTag("Player");
+        _playerController = playerObject.GetComponent<Character>();
+    }
 
     public void OnTriggerEnter2D(Collider2D other)
     {
@@ -25,11 +32,13 @@ public class DoorTrigger : MonoBehaviour
 
     private void Update()
     {
-        if (triggerActive && isUnlocked && Input.GetKeyDown(KeyCode.E))
+
+        if (triggerActive && isUnlocked && Input.GetKeyDown(KeyCode.E) && !_playerController.LockControlls)
         {
-            var transitionScript = gameObject.GetComponent<DoorTransition>();
-            var doorScript = gameObject.GetComponent<DoorScript>();
-            Directions direction = doorScript.direction;
+            _playerController.LockControlls = true;
+            DoorTransition transitionScript = gameObject.GetComponent<DoorTransition>();
+            DoorController doorController = gameObject.GetComponent<DoorController>();
+            Directions direction = doorController.Direction;
             transitionScript.Action(direction);
         }
     }
