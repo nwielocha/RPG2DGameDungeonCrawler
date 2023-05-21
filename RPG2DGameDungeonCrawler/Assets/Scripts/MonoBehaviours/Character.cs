@@ -8,7 +8,13 @@ public abstract class Character : MonoBehaviour
 
 	public float maxManaPoints;
 	public float startingManaPoints;
+	public bool LockControlls { get; set; }
 
+	void Start()
+	{
+		LockControlls = false;
+	}
+	
 	public virtual void KillCharacter()
 	{
 		Destroy(gameObject);
