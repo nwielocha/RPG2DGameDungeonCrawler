@@ -13,7 +13,6 @@ GameObject:
   - component: {fileID: 1109194152013912945}
   - component: {fileID: 4105871989438074410}
   - component: {fileID: 5457206824673994236}
-  - component: {fileID: 1052089509815716123}
   - component: {fileID: 6351895264878085154}
   - component: {fileID: 1517194497320693772}
   - component: {fileID: -9172201324698152625}
@@ -169,20 +168,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1.5}
   m_EdgeRadius: 0
---- !u!114 &1052089509815716123
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8476971323503954286}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 07709fa266562aa46ab422be7b14900a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  DoorSprite: {fileID: 21300000, guid: 22a7d63fe84bc94439210597beb2a15f, type: 3}
-  FrameSprite: {fileID: -1234094541, guid: 6e87c789fdc9e7d4da9885d4a10c217a, type: 3}
 --- !u!114 &6351895264878085154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -192,7 +177,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 8476971323503954286}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a08c081ecd8f91542b3b2c1d77363502, type: 3}
+  m_Script: {fileID: 11500000, guid: 080d1dd4e1b0b6b4f815a6950a8b8382, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   isUnlocked: 1
