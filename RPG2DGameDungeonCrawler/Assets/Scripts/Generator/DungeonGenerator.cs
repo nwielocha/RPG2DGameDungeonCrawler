@@ -25,7 +25,7 @@ public class DungeonGenerator
 
     private void GenerateMainRooms()
     {
-        RoomComponent startingRoom = new RoomComponent(new Position(0, 0), RoomType.Start);
+        RoomComponent startingRoom = new RoomComponent(new Position(0, 0), _controller.Dungeon, RoomType.Start);
         RoomComponent current = startingRoom;
         _controller.AddRoom(startingRoom);
         uint generated = 1;
@@ -77,7 +77,7 @@ public class DungeonGenerator
         int rDir = (int) directions.GetValue(index);
 
         if(!_controller.DoRoomExist(pos.x + rDir / 10, pos.y + rDir % 10))
-            return new RoomComponent(new Position(pos.x + rDir / 10, pos.y + rDir % 10), RoomType.Normal);
+            return new RoomComponent(new Position(pos.x + rDir / 10, pos.y + rDir % 10), _controller.Dungeon, RoomType.Normal);
         return null;
     }
 
