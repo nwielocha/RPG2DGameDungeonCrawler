@@ -30,5 +30,6 @@ public class DungeonComponent
     {
         RoomsNumber = CalcRoomsNumber();
         Controller.GenerateRooms();
+        Controller.PlaceOnMap();
     }
 }
