@@ -4,13 +4,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DungeonController
+public class DungeonController : IInstancer
 {
+    private GameObject _roomPrefab;
     public DungeonComponent Dungeon { get; private set; }
     private DungeonGenerator _generator;
 
     public DungeonController(DungeonComponent dungeon)
     {
+        _roomPrefab = LevelController.MainGameObject.GetComponent<LevelController>().RoomPrefab;
         Dungeon = dungeon;
         _generator = new DungeonGenerator(this);
     }
@@ -54,5 +56,19 @@ public class DungeonController
                                                                         (r.Pos.x == x && r.Pos.y == y - 1));
 
         return (uint) allNeigbours.Count;
+    }
+
+    public bool DirectionNeigbour(RoomComponent room, Directions direction)
+    {
+        return Dungeon.Rooms.Any(r => r.Pos.x == room.Pos.x + (int) direction / 10 && r.Pos.y == room.Pos.y + (int) direction % 10);
+    }
+
+    public void PlaceOnMap()
+    {
+        foreach(RoomComponent r in Dungeon.Rooms){
+            var room = UnityEngine.Object.Instantiate(_roomPrefab, new Vector3(RoomComponent.Width * r.Pos.x, RoomComponent.Height * r.Pos.y, 0), Quaternion.identity);
+            var roomController = room.GetComponent<RoomController>();
+            roomController.Room = r;
+        }
     }
 }
