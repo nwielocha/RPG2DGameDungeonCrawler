@@ -15,6 +15,8 @@ public class Enemy : Character
 	{
 		while (true)
 		{
+			StartCoroutine(FlickerCharacter());
+
 			hitPoints -= damage;
 			if (hitPoints <= float.Epsilon) // najmniejsza liczba wieksza od zera
 			{
