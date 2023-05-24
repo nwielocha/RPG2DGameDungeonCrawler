@@ -2,8 +2,9 @@ using UnityEngine;
 
 public class SpawnPoint : MonoBehaviour
 {
-	public GameObject prefabToSpawn;
-	public float repeatInterval;
+	public GameObject PrefabToSpawn { get; set; }
+	public float repeatInterval = 0;
+	public RoomController RmController { get; set; }
 
 	public void Start()
 	{
@@ -13,11 +14,21 @@ public class SpawnPoint : MonoBehaviour
 		}
 	}
 
+	public void SpawnEnemyLogic()
+	{
+
+	}
+
+	public void SpawnLootLogic()
+	{
+
+	}
+
 	public GameObject SpawnObject()
 	{
-		if (prefabToSpawn != null)
+		if (PrefabToSpawn != null)
 		{
-			return Instantiate(prefabToSpawn, transform.position, Quaternion.identity);
+			return Instantiate(PrefabToSpawn, transform.position, Quaternion.identity);
 		}
 
 		return null;
