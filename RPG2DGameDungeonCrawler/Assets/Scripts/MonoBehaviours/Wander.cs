@@ -6,6 +6,7 @@ using UnityEngine;
 [RequireComponent(typeof(Animator))]
 public class Wander : MonoBehaviour
 {
+	public RoomController RmController { get; set; }
 	public float pursuitSpeed;
 	public float wanderSpeed;
 	public float directionChangeInterval;
@@ -28,12 +29,17 @@ public class Wander : MonoBehaviour
 		StartCoroutine(WanderRoutine());
 	}
 
+	void Update()
+	{
+		Debug.DrawLine(rb2d.position, endPosition, Color.red);	
+	}
+
 	public IEnumerator WanderRoutine()
 	{
 		while (true)
 		{
 			ChooseNewEndpoint();
-			if (moveCoroutine != null )
+			if (moveCoroutine != null)
 			{
 				StopCoroutine(moveCoroutine);
 			}
@@ -125,10 +131,5 @@ public class Wander : MonoBehaviour
 		{
 			Gizmos.DrawWireSphere(transform.position, circleCollider.radius);
 		}	
-	}
-
-	void Update()
-	{
-		Debug.DrawLine(rb2d.position, endPosition, Color.red);	
 	}
 }
