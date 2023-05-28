@@ -3,6 +3,7 @@ using UnityEngine;
 
 public class Enemy : Character 
 {
+	public RoomController RmController { get; set; }
 	public int damageStrength;
 	Coroutine damageCoroutine;
 	float hitPoints;
@@ -21,6 +22,7 @@ public class Enemy : Character
 			if (hitPoints <= float.Epsilon) // najmniejsza liczba wieksza od zera
 			{
 				KillCharacter();
+				RmController.EnemyObjects.Remove(gameObject);
 				break;
 			}
 

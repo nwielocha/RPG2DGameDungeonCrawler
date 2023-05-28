@@ -2,9 +2,9 @@ using UnityEngine;
 
 public class DoorController : MonoBehaviour
 {
-    public Directions Direction { get; private set; }
     public Sprite Door;
     public Sprite DoorFrame; 
+    public Directions Direction { get; private set; }
 
     public void DefineDirection(Directions direction)
     {
@@ -15,11 +15,11 @@ public class DoorController : MonoBehaviour
         {
             case Directions.Up:
                 spriteRenderer.sprite = Door;
-                gameObject.transform.Translate(new Vector3(0, ((float)(RoomComponent.Height / 2) - offset), 0));
+                gameObject.transform.Translate(new Vector3(-offset, ((float)(RoomComponent.Height / 2) - offset), 0));
             break;
             case Directions.Down:
                 spriteRenderer.sprite = DoorFrame;
-                gameObject.transform.Translate(new Vector3(0, -((float)(RoomComponent.Height / 2) - offset), 0));
+                gameObject.transform.Translate(new Vector3(-offset, -((float)(RoomComponent.Height / 2) - offset), 0));
             break;
             case Directions.Right:
                 spriteRenderer.sprite = DoorFrame;
@@ -31,7 +31,6 @@ public class DoorController : MonoBehaviour
                 gameObject.transform.Translate(new Vector3(-((float)(RoomComponent.Width / 2) + offset), 0 ,0));
                 gameObject.transform.Rotate(0f, 0f, -90f, Space.Self);
             break;
-
         }
     }
 }

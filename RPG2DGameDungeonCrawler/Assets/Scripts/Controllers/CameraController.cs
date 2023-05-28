@@ -7,8 +7,6 @@ public class CameraController : MonoBehaviour
 {
     public Transform player;
     public Character PlayerController;
-    private Vector3 newPos, initPos, targetPos;
-    float newX, newY, newPlayerX, newPlayerY, elapsed = 0, duration = 1f;
     private Vector3 _targetCameraPos, _initPos;
     private float _cameraNewX, _cameraNewY, _playerNewX, _playerNewY, _elapsed, _duration;
     private bool _active;
@@ -50,24 +48,24 @@ public class CameraController : MonoBehaviour
                 _cameraNewX = init.x;
                 _cameraNewY = init.y + (float) RoomComponent.Height;
                 _playerNewX = player.transform.position.x;
-                _playerNewY = player.transform.position.y + 3;
+                _playerNewY = player.transform.position.y + 4;
             break;
             case Directions.Down:
                 _cameraNewX = init.x;
                 _cameraNewY = init.y - (float) RoomComponent.Height;
                 _playerNewX = player.transform.position.x;
-                _playerNewY = player.transform.position.y - 3;
+                _playerNewY = player.transform.position.y - 4;
             break;
             case Directions.Right:
                 _cameraNewX = init.x + (float) RoomComponent.Width;
                 _cameraNewY = init.y;
-                _playerNewX = player.transform.position.x + 2;
+                _playerNewX = player.transform.position.x + 3;
                 _playerNewY = player.transform.position.y;
             break;
             case Directions.Left:
                 _cameraNewX = init.x - (float) RoomComponent.Width;
                 _cameraNewY = init.y;
-                _playerNewX = player.transform.position.x - 2;
+                _playerNewX = player.transform.position.x - 3;
                 _playerNewY = player.transform.position.y;
             break;
         }

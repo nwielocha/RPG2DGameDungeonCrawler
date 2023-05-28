@@ -7,7 +7,7 @@ public class LevelController : MonoBehaviour
 {
     public GameObject RoomPrefab;
     public GameObject DoorPrefab;
-    public GameObject ObstaclePrefab;
+    public List<GameObject> ObstaclesPrefab = new List<GameObject>();
     public List<GameObject> LootPrefabs = new List<GameObject>();
     public List<GameObject> EnemyPrefabs = new List<GameObject>();
     public List<GameObject> BossPrefabs = new List<GameObject>();
