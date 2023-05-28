@@ -28,13 +28,13 @@ public class HealthBar : MonoBehaviour
 					heartImages[i].sprite = fullHeart;
 				else
 					heartImages[i].sprite = emptyHeart;
-				
+
 				if (i < maxHitPoints)
 					heartImages[i].enabled = true;
 				else
 					heartImages[i].enabled = false;
 			}
 		}
-		
+
 	}
 }

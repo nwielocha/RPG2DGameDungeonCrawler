@@ -19,9 +19,11 @@ public class Wander : MonoBehaviour
 	Vector3 endPosition;
 	float currentAngle = 0;
 	CircleCollider2D circleCollider;
-	
+	Obstacle obstacle;
+
 	void Start()
 	{
+		obstacle = GetComponent<Obstacle>();
 		endPosition = transform.position;
 		circleCollider = GetComponent<CircleCollider2D>();
 		animator = GetComponent<Animator>();
@@ -32,7 +34,7 @@ public class Wander : MonoBehaviour
 
 	void Update()
 	{
-		Debug.DrawLine(rb2d.position, endPosition, Color.red);	
+		Debug.DrawLine(rb2d.position, endPosition, Color.red);
 	}
 
 	public IEnumerator WanderRoutine()
@@ -84,6 +86,16 @@ public class Wander : MonoBehaviour
 		currentAngle += Random.Range(0, 360);
 		currentAngle = Mathf.Repeat(currentAngle, 360);
 		endPosition += Vector3FromAngle(currentAngle);
+
+		
+		//if (obstacle.GetComponent<Collider>().bounds.Containts(endPosition))
+		//{
+		//	print("endPosition is inside obstacle");
+		//}
+		//if (hitToTest.collider.bounds.Contains(telePosition))
+		//{
+		//	print("point is inside collider");
+		//}
 	}
 
 	Vector3 Vector3FromAngle(float inputAngleDegrees)
@@ -123,7 +135,7 @@ public class Wander : MonoBehaviour
 
 			targetTransform = null;
 		}
-		
+
 	}
 
 	void OnDrawGizmos()
@@ -131,6 +143,6 @@ public class Wander : MonoBehaviour
 		if (circleCollider != null)
 		{
 			Gizmos.DrawWireSphere(transform.position, circleCollider.radius);
-		}	
+		}
 	}
 }

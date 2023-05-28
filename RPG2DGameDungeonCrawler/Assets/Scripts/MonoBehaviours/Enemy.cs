@@ -7,6 +7,7 @@ public class Enemy : Character
 	public int damageStrength;
 	Coroutine damageCoroutine;
 	float hitPoints;
+
 	private void OnEnable()
 	{
 		ResetCharacter();
