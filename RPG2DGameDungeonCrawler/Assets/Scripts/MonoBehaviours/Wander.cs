@@ -19,11 +19,9 @@ public class Wander : MonoBehaviour
 	Vector3 endPosition;
 	float currentAngle = 0;
 	CircleCollider2D circleCollider;
-	Obstacle obstacle;
 
 	void Start()
 	{
-		obstacle = GetComponent<Obstacle>();
 		endPosition = transform.position;
 		circleCollider = GetComponent<CircleCollider2D>();
 		animator = GetComponent<Animator>();
