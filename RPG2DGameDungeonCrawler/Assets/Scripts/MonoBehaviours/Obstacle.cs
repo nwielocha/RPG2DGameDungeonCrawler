@@ -2,10 +2,15 @@ using UnityEngine;
 
 public class Obstacle : MonoBehaviour
 {
-	Rigidbody2D rb2D;
-
-	private void Start()
+	private void OnTriggerEnter2D(Collider2D collision)
 	{
-		rb2D = GetComponent<Rigidbody2D>();
+		if (collision.gameObject.CompareTag("Ammo"))
+		{
+			if (collision.gameObject.TryGetComponent<Ammo>(out var hitObject))
+			{
+				print("Kolizja: " + hitObject.name);
+				collision.gameObject.SetActive(false);
+			}
+		}
 	}
 }
