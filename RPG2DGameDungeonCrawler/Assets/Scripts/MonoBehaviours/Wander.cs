@@ -85,7 +85,8 @@ public class Wander : MonoBehaviour
 		currentAngle = Mathf.Repeat(currentAngle, 360);
 		endPosition += Vector3FromAngle(currentAngle);
 
-		
+
+		// TODO: EndPosition wchodzace na krawedz pokoju powinno wracac do srodka
 		//if (obstacle.GetComponent<Collider>().bounds.Containts(endPosition))
 		//{
 		//	print("endPosition is inside obstacle");
@@ -133,7 +134,6 @@ public class Wander : MonoBehaviour
 
 			targetTransform = null;
 		}
-
 	}
 
 	void OnDrawGizmos()
