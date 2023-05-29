@@ -14,9 +14,10 @@ GameObject:
   - component: {fileID: 7656783502412126873}
   - component: {fileID: 7656783502412126872}
   - component: {fileID: 7656783502412126879}
+  - component: {fileID: 3027059927310129282}
   m_Layer: 6
   m_Name: Layer_Walls
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -189,7 +190,7 @@ Tilemap:
     second:
       serializedVersion: 2
       m_TileIndex: 1
-      m_TileSpriteIndex: 6
+      m_TileSpriteIndex: 8
       m_TileMatrixIndex: 0
       m_TileColorIndex: 0
       m_TileObjectToInstantiateIndex: 65535
@@ -500,12 +501,12 @@ Tilemap:
     m_Data: {fileID: 1361123844, guid: 6e87c789fdc9e7d4da9885d4a10c217a, type: 3}
   - m_RefCount: 6
     m_Data: {fileID: 238430564, guid: 6e87c789fdc9e7d4da9885d4a10c217a, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1075767564, guid: 6e87c789fdc9e7d4da9885d4a10c217a, type: 3}
-  - m_RefCount: 1
-    m_Data: {fileID: 1624498917, guid: 6e87c789fdc9e7d4da9885d4a10c217a, type: 3}
   - m_RefCount: 0
     m_Data: {fileID: 0}
+  - m_RefCount: 1
+    m_Data: {fileID: 1624498917, guid: 6e87c789fdc9e7d4da9885d4a10c217a, type: 3}
+  - m_RefCount: 1
+    m_Data: {fileID: 1075767564, guid: 6e87c789fdc9e7d4da9885d4a10c217a, type: 3}
   - m_RefCount: 1
     m_Data: {fileID: 992788611, guid: 6e87c789fdc9e7d4da9885d4a10c217a, type: 3}
   m_TileMatrixArray:
@@ -694,6 +695,18 @@ CompositeCollider2D:
       - {x: 6.5624933, y: -3.0000074}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
+--- !u!114 &3027059927310129282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7656783502412126851}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 136fcd5c64c322547abdd109a60b1a07, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &7656783502677599325
 GameObject:
   m_ObjectHideFlags: 0
@@ -704,9 +717,9 @@ GameObject:
   m_Component:
   - component: {fileID: 7656783502677599327}
   - component: {fileID: 7656783502677599326}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Obstacle Default
-  m_TagString: Untagged
+  m_TagString: Obstacle
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

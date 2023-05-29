@@ -7,6 +7,8 @@ TagManager:
   - Enemy
   - CanBePickedUp
   - Spawner
+  - Obstacle
+  - Ammo
   layers:
   - Default
   - TransparentFX
