@@ -14,5 +14,9 @@ public class Ammo : MonoBehaviour
 
 			gameObject.SetActive(false);
 		}
+		else if (collision.gameObject.CompareTag("Obstacle"))
+		{
+			gameObject.SetActive(false);
+		}
 	}
 }
