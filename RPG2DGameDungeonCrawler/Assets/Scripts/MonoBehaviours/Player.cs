@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : Character 
 {
@@ -15,6 +16,15 @@ public class Player : Character
 	private void OnEnable()
 	{
 		ResetCharacter();
+	}
+
+	public void Update()
+	{
+		if(Input.GetKeyDown("p"))
+		{
+			LevelController.Pause();
+			LockControlls = true;
+		}
 	}
 
 	void OnTriggerEnter2D(Collider2D collision)
@@ -98,6 +108,7 @@ public class Player : Character
 			if (hitPoints.value < float.Epsilon)
 			{
 				KillCharacter();
+
 				break;
 			}
 
@@ -114,5 +125,6 @@ public class Player : Character
 		Destroy(healthBar.gameObject);
 		Destroy(manaBar.gameObject);
 		Destroy(inventory.gameObject);
+		SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
 	}
 }
