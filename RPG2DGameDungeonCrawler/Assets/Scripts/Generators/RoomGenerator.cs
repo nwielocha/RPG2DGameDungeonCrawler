@@ -6,7 +6,7 @@ using UnityEngine;
 public class RoomGenerator
 {
     private RoomController _roomController;
-    private GameObject _enemyPrefab; 
+    private GameObject _enemyPrefab;
     public RoomGenerator(RoomController controller)
     {
         _roomController = controller;
@@ -30,6 +30,15 @@ public class RoomGenerator
 
     }
 
+    public GameObject RandomPrefab(string propName)
+    {
+        LevelController levelController = LevelController.MainGameObject.GetComponent<LevelController>();
+        object obj = levelController.GetType().GetField(propName).GetValue(levelController);
+        List<GameObject> arr = (List<GameObject>) obj; 
+        int index = (int) UnityEngine.Random.Range(0, arr.Count - 1);
+        return arr[index];
+    }
+
     public void GenerateObstacles()
     {
         RoomComponent room = _roomController.Room;
@@ -40,23 +49,14 @@ public class RoomGenerator
 
     public void GenerateTreasure()
     {
-
     }
 
-
-    public GameObject RandomPrefab(string propName)
-    {
-        LevelController levelController = LevelController.MainGameObject.GetComponent<LevelController>();
-        object obj = levelController.GetType().GetField(propName).GetValue(levelController);
-        List<GameObject> arr = (List<GameObject>) obj; 
-        int index = (int) UnityEngine.Random.Range(0, arr.Count - 1);
-        return arr[index];
-    }
     public void GenerateLoot()
     {
         GameObject loot = RandomPrefab("LootPrefabs");
         List<GameObject> spawnPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Spawner")).FindAll(g => g.transform.IsChildOf(_roomController.ObstacleObject.transform));
         int generated = 0;
+        
         do{
             int randIndex = (int) UnityEngine.Random.Range(0, spawnPoints.Count - 1);
             var spawnPoint = spawnPoints[randIndex];
@@ -67,9 +67,7 @@ public class RoomGenerator
                 _roomController.LootObject = spawnPoint;
                 generated++;
             }
-
         }while(generated < 1);
-        // getObstacleSpawnPoints // Pick it at random // SetSpawn after clearing room 
     }
 
     public void GenerateBoss()
@@ -78,7 +76,6 @@ public class RoomGenerator
 
     public void GenerateStart()
     {
-
     }
 
     public void GenerateEnemies()
@@ -112,6 +109,7 @@ public class RoomGenerator
         List<GameObject> spawnPoints = new List<GameObject>(GameObject.FindGameObjectsWithTag("Spawner")).FindAll(g => g.transform.IsChildOf(_roomController.ObstacleObject.transform));
         int respawnNumber = (int) UnityEngine.Random.Range(0, spawnPoints.Count - 2);
         int respawned = 0;
+        
         do{
             int randIndex = (int) UnityEngine.Random.Range(0, spawnPoints.Count - 1);
             var spawnPoint = spawnPoints[randIndex];
