@@ -10,7 +10,6 @@ public class Enemy : Character
 	Coroutine damageCoroutine;
 	float hitPoints;
 
-
 	private void OnEnable()
 	{
 		ResetCharacter();
@@ -44,7 +43,7 @@ public class Enemy : Character
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag("Player") && enemyType == EnemyType.Melee)
+		if (collision.gameObject.CompareTag("Player"))
 		{
 			print("Kolizja z " +  collision.gameObject.name);
 			Player player = collision.gameObject.GetComponent<Player>();
@@ -64,14 +63,6 @@ public class Enemy : Character
 				StopCoroutine(damageCoroutine);
 				damageCoroutine = null;
 			}
-		}
-	}
-
-	void RangedAttack()
-	{
-		if (enemyType == EnemyType.Ranged)
-		{
-
 		}
 	}
 }
