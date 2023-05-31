@@ -205,5 +205,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   pursuitSpeed: 1.4
   wanderSpeed: 0.8
-  directionChangeInterval: 3
+  directionChangeInterval: 2
   followPlayer: 1
