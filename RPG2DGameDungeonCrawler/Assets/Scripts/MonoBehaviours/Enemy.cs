@@ -5,8 +5,11 @@ public class Enemy : Character
 {
 	public RoomController RmController { get; set; }
 	public int damageStrength;
+	public EnemyType enemyType;
+	public GameObject ammoPrefab;
 	Coroutine damageCoroutine;
 	float hitPoints;
+
 
 	private void OnEnable()
 	{
@@ -41,7 +44,7 @@ public class Enemy : Character
 
 	void OnCollisionEnter2D(Collision2D collision)
 	{
-		if (collision.gameObject.CompareTag("Player"))
+		if (collision.gameObject.CompareTag("Player") && enemyType == EnemyType.Melee)
 		{
 			print("Kolizja z " +  collision.gameObject.name);
 			Player player = collision.gameObject.GetComponent<Player>();
@@ -61,6 +64,14 @@ public class Enemy : Character
 				StopCoroutine(damageCoroutine);
 				damageCoroutine = null;
 			}
+		}
+	}
+
+	void RangedAttack()
+	{
+		if (enemyType == EnemyType.Ranged)
+		{
+
 		}
 	}
 }
