@@ -42,11 +42,6 @@ public class Wander : MonoBehaviour
 			ChooseNewEndpoint();
 			if (moveCoroutine != null)
 			{
-				if (!RmController.IsPlayerPresent)
-				{
-					StopCoroutine(moveCoroutine);
-				}
-				
 				StopCoroutine(moveCoroutine);
 			}
 
@@ -86,9 +81,12 @@ public class Wander : MonoBehaviour
 	// Metoda wybierajaca nowy punkt docelowy
 	void ChooseNewEndpoint()
 	{
-		currentAngle += Random.Range(0, 360);
-		currentAngle = Mathf.Repeat(currentAngle, 360);
-		endPosition += Vector3FromAngle(currentAngle);
+		if (RmController.IsPlayerPresent)
+		{
+			currentAngle += Random.Range(0, 360);
+			currentAngle = Mathf.Repeat(currentAngle, 360);
+			endPosition += Vector3FromAngle(currentAngle);
+		}
 	}
 
 	Vector3 Vector3FromAngle(float inputAngleDegrees)
