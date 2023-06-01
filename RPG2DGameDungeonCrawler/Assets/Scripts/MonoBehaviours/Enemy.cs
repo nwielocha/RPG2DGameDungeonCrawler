@@ -28,7 +28,7 @@ public class Enemy : Character
 
 	private void Update()
 	{
-		if (enemyType == EnemyType.Ranged)
+		if (enemyType == EnemyType.Ranged && RmController.IsPlayerPresent)
 		{
 			if (!target)
 			{
@@ -112,15 +112,6 @@ public class Enemy : Character
 				damageCoroutine = StartCoroutine(player.DamageCharacter(damageStrength, 1.0f));
 			}
 		}
-		//else if (collision.gameObject.CompareTag("Ammo") && enemyType == EnemyType.Ranged)
-		//{
-		//	print("Kolizja z " + collision.gameObject.name);
-		//	Player player = collision.gameObject.GetComponent<Player>();
-		//	if (damageCoroutine == null)
-		//	{
-		//		damageCoroutine = StartCoroutine(player.DamageCharacter(damageStrength, 1.0f));
-		//	}
-		//}
 	}
 
 	void OnCollisionExit2D(Collision2D collision)
