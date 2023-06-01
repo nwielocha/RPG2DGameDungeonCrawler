@@ -9,6 +9,7 @@ TagManager:
   - Spawner
   - Obstacle
   - Ammo
+  - EnemyAmmo
   layers:
   - Default
   - TransparentFX

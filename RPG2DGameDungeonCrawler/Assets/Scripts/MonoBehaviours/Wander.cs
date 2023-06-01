@@ -81,20 +81,12 @@ public class Wander : MonoBehaviour
 	// Metoda wybierajaca nowy punkt docelowy
 	void ChooseNewEndpoint()
 	{
-		currentAngle += Random.Range(0, 360);
-		currentAngle = Mathf.Repeat(currentAngle, 360);
-		endPosition += Vector3FromAngle(currentAngle);
-
-
-		// TODO: EndPosition wchodzace na krawedz pokoju powinno wracac do srodka
-		//if (obstacle.GetComponent<Collider>().bounds.Containts(endPosition))
-		//{
-		//	print("endPosition is inside obstacle");
-		//}
-		//if (hitToTest.collider.bounds.Contains(telePosition))
-		//{
-		//	print("point is inside collider");
-		//}
+		if (RmController.IsPlayerPresent)
+		{
+			currentAngle += Random.Range(0, 360);
+			currentAngle = Mathf.Repeat(currentAngle, 360);
+			endPosition += Vector3FromAngle(currentAngle);
+		}
 	}
 
 	Vector3 Vector3FromAngle(float inputAngleDegrees)
