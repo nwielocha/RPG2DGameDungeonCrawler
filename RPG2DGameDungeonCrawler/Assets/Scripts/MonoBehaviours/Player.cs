@@ -115,4 +115,12 @@ public class Player : Character
 		Destroy(manaBar.gameObject);
 		Destroy(inventory.gameObject);
 	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.gameObject.CompareTag("EnemyAmmo"))
+		{
+			Destroy(gameObject);
+		}
+	}
 }
