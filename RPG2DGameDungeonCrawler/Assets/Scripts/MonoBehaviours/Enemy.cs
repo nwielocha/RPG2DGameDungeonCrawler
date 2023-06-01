@@ -43,25 +43,6 @@ public class Enemy : Character
 		}
 	}
 
-	//private void FixedUpdate()
-	//{
-	//	if (enemyType == EnemyType.Ranged)
-	//	{
-	//		if (target != null)
-	//		{
-	//			if (Vector2.Distance(target.position - transform.position, transform.position) >= distanceToStop)
-	//			{
-	//				rb2D.velocity = transform.up * speed;
-	//			}
-	//			else
-	//			{
-	//				rb2D.velocity = Vector2.zero;
-	//			}
-	//		}
-
-	//	}
-	//}
-
 	private void Shoot()
 	{
 		if (timeToFire <= 0f)

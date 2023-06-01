@@ -2,21 +2,19 @@ using UnityEngine;
 
 public class EnemyAmmo : MonoBehaviour
 {
+	public int damageInflicted;
 	[Range(1, 10)]
 	[SerializeField]
-	private float speed = 3f;
+	private float speed = 1f;
 	[Range(1, 10)]
 	[SerializeField]
-	private float lifeTime = 3f;
-	private Rigidbody2D rb2D;
-	Transform target;
+	private float lifeTime = 1f;
 	private Vector3 targetDirection;
 	private float timer;
 
 	private void Start()
 	{
 		timer = 0f;
-		rb2D = GetComponent<Rigidbody2D>();
 		Destroy(gameObject, lifeTime);
 	}
 
@@ -28,15 +26,6 @@ public class EnemyAmmo : MonoBehaviour
 		{
 			Destroy(gameObject);
 		}
-		//var step = Time.deltaTime * speed;
-		//target = GameObject.FindGameObjectWithTag("Player").transform;
-		//Vector3 directionToMove = target.position - transform.position;
-		//directionToMove = directionToMove.normalized * step;
-		//float maxDistance = Vector3.Distance(transform.position, target.position);
-		////rb2D.position = Vector3.MoveTowards(rb2D.position, target.position, step);
-		//print(target.position);
-		//Debug.DrawLine(rb2D.position, target.position);
-		//transform.position = transform.position + Vector3.ClampMagnitude(directionToMove, maxDistance);
 	}
 
 	public void SetDirection(Vector3 direction)
@@ -46,6 +35,22 @@ public class EnemyAmmo : MonoBehaviour
 
 	private void OnCollisionEnter2D(Collision2D collision)
 	{
-		Destroy(collision.gameObject);
+		Destroy(gameObject);
+	}
+
+	private void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision is BoxCollider2D && collision.gameObject.CompareTag("Player"))
+		{
+			if (collision.gameObject.TryGetComponent<Player> (out var player)) 
+			{
+				StartCoroutine(player.DamageCharacter(damageInflicted, 0.0f));
+				gameObject.SetActive(false);
+			}
+		}
+		else if (collision.gameObject.CompareTag("Obstacle"))
+		{
+			gameObject.SetActive(false);
+		}
 	}
 }
