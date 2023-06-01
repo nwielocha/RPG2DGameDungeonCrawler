@@ -13,7 +13,8 @@ public class Enemy : Character
 	public float distanceToShoot = 5f;
 	public float distanceToStop = 3f;
 	public float fireRate;
-	private Transform target;
+	public Transform target;
+	public float rotateSpeed = 0.0025f;
 	private Rigidbody2D rb2D;
 	private float timeToFire;
 	Coroutine damageCoroutine;
@@ -66,7 +67,12 @@ public class Enemy : Character
 		if (timeToFire <= 0f)
 		{
 			Debug.Log("Shoot");
-			Instantiate(enemyAmmoPrefab, transform.position, transform.rotation);
+			GameObject enemyAmmoObj = Instantiate(enemyAmmoPrefab, transform.position, Quaternion.identity);
+			EnemyAmmo enemyAmmo = enemyAmmoObj.GetComponent<EnemyAmmo>();
+
+			Vector3 direction = (GameObject.FindGameObjectWithTag("Player").transform.position - transform.position).normalized;
+
+			enemyAmmo.SetDirection(direction);
 			timeToFire = fireRate;
 		}
 		else

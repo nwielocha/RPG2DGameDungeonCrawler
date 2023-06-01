@@ -12,6 +12,8 @@ GameObject:
   - component: {fileID: 2610649183938613768}
   - component: {fileID: 3278864565908097274}
   - component: {fileID: 2610649183938613769}
+  - component: {fileID: 6241326757674070053}
+  - component: {fileID: 5426341218899984175}
   m_Layer: 9
   m_Name: EnemyAmmoObject
   m_TagString: EnemyAmmo
@@ -123,3 +125,29 @@ CircleCollider2D:
   m_Offset: {x: -0.001726504, y: 0.029350648}
   serializedVersion: 2
   m_Radius: 0.10517953
+--- !u!114 &6241326757674070053
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2610649183938613770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6162f0bc990a6cf43bb61c131fb29a7e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 10
+  lifeTime: 3
+--- !u!114 &5426341218899984175
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2610649183938613770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 482fcdd7b3ff3434d9392e379134b902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
