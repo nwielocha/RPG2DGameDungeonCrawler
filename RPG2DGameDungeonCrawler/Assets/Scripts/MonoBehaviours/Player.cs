@@ -11,7 +11,7 @@ public class Player : Character
 	public Inventory inventoryPrefab;
 	HealthBar healthBar;
 	ManaBar manaBar;
-	Inventory inventory;
+	public Inventory inventory;
 
 	private void OnEnable()
 	{
@@ -38,13 +38,13 @@ public class Player : Character
 				bool shouldDisappear = false;
 				switch (hitObject.itemType)
 				{
-					case Item.ItemType.COIN:
+					case ItemType.COIN:
 						shouldDisappear = inventory.AddItem(hitObject);
 						break;
-					case Item.ItemType.HEALTH:
+					case ItemType.HEALTH:
 						shouldDisappear = AdjustHitPoints(hitObject.quantity);
 						break;
-					case Item.ItemType.MANA:
+					case ItemType.MANA:
 						shouldDisappear = AdjustManaPoints(hitObject.quantity);
 						break;
 					default: 
