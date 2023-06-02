@@ -1194,11 +1194,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5673751328446391319, guid: 449dc24b1bd153841abff8e2b0aa8211, type: 3}
       propertyPath: m_RootOrder
-<<<<<<< HEAD
-      value: 1
-=======
       value: 4
->>>>>>> menus
       objectReference: {fileID: 0}
     - target: {fileID: 5673751328446391319, guid: 449dc24b1bd153841abff8e2b0aa8211, type: 3}
       propertyPath: m_LocalPosition.x
@@ -1330,11 +1326,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-<<<<<<< HEAD
-  m_RootOrder: 2
-=======
   m_RootOrder: 3
->>>>>>> menus
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1128832212
 MonoBehaviour:
@@ -2483,21 +2475,13 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7656783502677599325, guid: ebbc18d8d2a7d9c4d8229204cb111356, type: 3}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
-      propertyPath: BossPrefabs.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: LootPrefabs.Array.size
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: EnemyPrefabs.Array.size
-      value: 4
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
-      propertyPath: BossPrefabs.Array.data[0]
-      value: 
-      objectReference: {fileID: 8510481645752400582, guid: 0537a7fc5e5654d4d994345b18f5a4e8, type: 3}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: LootPrefabs.Array.data[0]
       value: 
@@ -2507,25 +2491,9 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 360805174449242161, guid: 711264cd778edf444832e0aea4741651, type: 3}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
-      propertyPath: LootPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 4593918163657927737, guid: db89ed8e9bce3f945bada328c17cd07f, type: 3}
-    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: EnemyPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 8510481645752400582, guid: 015927fa55de86640a694457f0f910e2, type: 3}
-    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
-      propertyPath: EnemyPrefabs.Array.data[1]
-      value: 
-      objectReference: {fileID: 8510481645752400582, guid: 0537a7fc5e5654d4d994345b18f5a4e8, type: 3}
-    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
-      propertyPath: EnemyPrefabs.Array.data[2]
-      value: 
-      objectReference: {fileID: 8510481645752400582, guid: 77d783f035a97ee4da397e33420b3112, type: 3}
-    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
-      propertyPath: EnemyPrefabs.Array.data[3]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: ObstaclesPrefab.Array.size
       value: 10
