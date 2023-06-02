@@ -16,7 +16,8 @@ public class RoomGenerator
     {
         GameObject doorPrefab = LevelController.MainGameObject.GetComponent<LevelController>().DoorPrefab;
         RoomComponent room = _roomController.Room;
-        DungeonController dungeonController = _roomController.Room.Dungeon.Controller;
+        Debug.Log(room);
+        DungeonController dungeonController = room.Dungeon.Controller;
         
         foreach(Directions direction in Enum.GetValues(typeof(Directions)))
         {
@@ -49,6 +50,10 @@ public class RoomGenerator
 
     public void GenerateTreasure()
     {
+        RoomComponent room = _roomController.Room;
+        LevelController levelController = LevelController.MainGameObject.GetComponent<LevelController>();
+        GameObject shop = levelController.ShopPrefab;
+        GameObject created = UnityEngine.Object.Instantiate(shop, new Vector3(room.Pos.x * RoomComponent.Width, room.Pos.y * RoomComponent.Height, 0), Quaternion.identity);
     }
 
     public void GenerateLoot()
