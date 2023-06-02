@@ -28,6 +28,7 @@ public class DungeonComponent
 
     public void Generate()
     {
+        // czyszczenie
         RoomsNumber = CalcRoomsNumber();
         Controller.GenerateRooms();
         Controller.PlaceOnMap();
