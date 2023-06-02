@@ -2463,6 +2463,10 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7656783502677599325, guid: 3d85f888dd351dc4794dcb9c58c45026, type: 3}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
+      propertyPath: ShopPrefab
+      value: 
+      objectReference: {fileID: 7656783502677599325, guid: 133cd70542b6ff449af79a9561ce3dfb, type: 3}
+    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: DoorPrefabs
       value: 
       objectReference: {fileID: 8476971323503954286, guid: f49cf4a061c5e7f47bf46edce87bb1d7, type: 3}
