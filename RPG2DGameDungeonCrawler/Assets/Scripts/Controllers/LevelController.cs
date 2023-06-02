@@ -7,6 +7,7 @@ public class LevelController : MonoBehaviour
 {
     public GameObject RoomPrefab;
     public GameObject DoorPrefab;
+    public GameObject ShopPrefab;
 	public GameObject PauseCanvas { get; private set; }
     public static LevelController Instance;
     public List<GameObject> ObstaclesPrefab = new List<GameObject>();
