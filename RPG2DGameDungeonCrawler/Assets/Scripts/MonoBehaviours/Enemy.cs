@@ -11,10 +11,8 @@ public class Enemy : Character
 	public GameObject enemyAmmoPrefab;
 	public float speed = 3f;
 	public float distanceToShoot = 5f;
-	public float distanceToStop = 3f;
 	public float fireRate;
 	public Transform target;
-	public float rotateSpeed = 0.0025f;
 	private Rigidbody2D rb2D;
 	private float timeToFire;
 	Coroutine damageCoroutine;
