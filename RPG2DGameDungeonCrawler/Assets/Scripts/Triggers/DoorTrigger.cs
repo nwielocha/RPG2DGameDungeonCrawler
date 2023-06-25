@@ -1,10 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-  
+
 public class DoorTrigger : MonoBehaviour
 {
-    private bool triggerActive = false;
+    private bool _triggerActive = false;
     public bool isUnlocked;
     private Character _playerController;
 
@@ -18,7 +18,7 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            triggerActive = true;
+            _triggerActive = true;
         }
     }
 
@@ -26,14 +26,18 @@ public class DoorTrigger : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            triggerActive = false;
+            _triggerActive = false;
         }
     }
 
     private void Update()
     {
-
-        if (triggerActive && isUnlocked && Input.GetKeyDown(KeyCode.E) && !_playerController.LockControlls)
+        if (
+            _triggerActive
+            && isUnlocked
+            && Input.GetKeyDown(KeyCode.E)
+            && !_playerController.LockControlls
+        )
         {
             _playerController.LockControlls = true;
             DoorTransition transitionScript = gameObject.GetComponent<DoorTransition>();

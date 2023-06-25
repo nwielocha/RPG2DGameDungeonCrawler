@@ -7,10 +7,11 @@ public class HelpOverlayHandler : ButtonsHandler
 {
     public override void Handle(int index)
     {
-        switch(index){
-        case 0:
-             GameObject.Find("HelpCanvas").SetActive(false);
-        break;
+        switch (index)
+        {
+            case 0:
+                GameObject.Find("HelpCanvas").SetActive(false);
+                break;
         }
     }
 }

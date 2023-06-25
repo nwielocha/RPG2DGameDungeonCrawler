@@ -3,24 +3,25 @@ using UnityEngine.UI;
 
 public class ManaBar : MonoBehaviour
 {
-	public Points manaPoints;
-	[HideInInspector]
-	public Player character;
-	public Image meterImage;
-	public Text manaText;
-	float maxManaPoints;
+    public Points manaPoints;
 
-	void Start()
-	{
-		maxManaPoints = character.maxManaPoints;
-	}
+    [HideInInspector]
+    public Player character;
+    public Image meterImage;
+    public Text manaText;
+    float maxManaPoints;
 
-	void Update()
-	{
-		if (character != null)
-		{
-			meterImage.fillAmount = manaPoints.value / maxManaPoints;
-			manaText.text = "MANA:" + (meterImage.fillAmount * 100);
-		}
-	}
+    void Start()
+    {
+        maxManaPoints = character.MaxManaPoints;
+    }
+
+    void Update()
+    {
+        if (character != null)
+        {
+            meterImage.fillAmount = manaPoints.value / maxManaPoints;
+            manaText.text = "MANA:" + (meterImage.fillAmount * 100);
+        }
+    }
 }

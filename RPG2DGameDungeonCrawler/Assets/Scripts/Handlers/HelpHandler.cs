@@ -7,10 +7,11 @@ public class HelpHandler : ButtonsHandler
 {
     public override void Handle(int index)
     {
-        switch(index){
-        case 0:
-            SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
-        break;
+        switch (index)
+        {
+            case 0:
+                SceneManager.LoadScene("MainMenu", LoadSceneMode.Single);
+                break;
         }
     }
 }

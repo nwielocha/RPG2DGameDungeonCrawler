@@ -2,129 +2,129 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class Player : Character 
+public class Player : Character
 {
-	public Points hitPoints;
-	public Points manaPoints;
-	public HealthBar healthBarPrefab;
-	public ManaBar manaBarPrefab;
-	public Inventory inventoryPrefab;
-	HealthBar healthBar;
-	ManaBar manaBar;
-	public Inventory inventory;
+    public Points hitPoints;
+    public Points manaPoints;
+    public HealthBar healthBarPrefab;
+    public ManaBar manaBarPrefab;
+    public Inventory inventoryPrefab;
+    HealthBar healthBar;
+    ManaBar manaBar;
+    public Inventory inventory;
 
-	private void OnEnable()
-	{
-		ResetCharacter();
-	}
+    private void OnEnable()
+    {
+        ResetCharacter();
+    }
 
-	public void Update()
-	{
-		if(Input.GetKeyDown("p"))
-		{
-			LevelController.Pause();
-			LockControlls = true;
-		}
-	}
+    public void Update()
+    {
+        if (Input.GetKeyDown("p"))
+        {
+            LevelController.Pause();
+            LockControlls = true;
+        }
+    }
 
-	void OnTriggerEnter2D(Collider2D collision)
-	{
-		if (collision.gameObject.CompareTag("CanBePickedUp"))
-		{
-			Item hitObject = collision.gameObject.GetComponent<Consumable>().item;
-			if (hitObject != null)
-			{
-				print("Kolizja: " +  hitObject.name);
-				bool shouldDisappear = false;
-				switch (hitObject.itemType)
-				{
-					case ItemType.COIN:
-						shouldDisappear = inventory.AddItem(hitObject);
-						break;
-					case ItemType.HEALTH:
-						shouldDisappear = AdjustHitPoints(hitObject.quantity);
-						break;
-					case ItemType.MANA:
-						shouldDisappear = AdjustManaPoints(hitObject.quantity);
-						break;
-					default: 
-						break;
-				}
+    void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("CanBePickedUp"))
+        {
+            Item hitObject = collision.gameObject.GetComponent<Consumable>().item;
+            if (hitObject != null)
+            {
+                print("Kolizja: " + hitObject.name);
+                bool shouldDisappear = false;
+                switch (hitObject.itemType)
+                {
+                    case ItemType.Coin:
+                        shouldDisappear = inventory.AddItem(hitObject);
+                        break;
+                    case ItemType.Health:
+                        shouldDisappear = AdjustHitPoints(hitObject.quantity);
+                        break;
+                    case ItemType.Mana:
+                        shouldDisappear = AdjustManaPoints(hitObject.quantity);
+                        break;
+                    default:
+                        break;
+                }
 
-				if (shouldDisappear)
-				{
-					collision.gameObject.SetActive(false);
-				}
-			}
-		}
-	}
+                if (shouldDisappear)
+                {
+                    collision.gameObject.SetActive(false);
+                }
+            }
+        }
+    }
 
-	public bool AdjustHitPoints(int amount)
-	{
-		if (hitPoints.value < maxHitPoints)
-		{
-			hitPoints.value += amount;
-			print("Nowe punkty: " + amount + ". Razem: " + hitPoints.value);
+    public bool AdjustHitPoints(int amount)
+    {
+        if (hitPoints.value < MaxHitPoints)
+        {
+            hitPoints.value += amount;
+            print("Nowe punkty: " + amount + ". Razem: " + hitPoints.value);
 
-			return true;
-		}
-		
-		return false;
-	}
+            return true;
+        }
 
-	public bool AdjustManaPoints(int amount)
-	{
-		if (manaPoints.value < maxManaPoints)
-		{
-			manaPoints.value += amount;
-			print("Nowe punkty: " + amount + ". Razem: " + hitPoints.value);
+        return false;
+    }
 
-			return true;
-		}
+    public bool AdjustManaPoints(int amount)
+    {
+        if (manaPoints.value < MaxManaPoints)
+        {
+            manaPoints.value += amount;
+            print("Nowe punkty: " + amount + ". Razem: " + hitPoints.value);
 
-		return false;
-	}
+            return true;
+        }
 
-	public override void ResetCharacter()
-	{
-		inventory = Instantiate(inventoryPrefab);
-		healthBar = Instantiate(healthBarPrefab);
-		manaBar = Instantiate(manaBarPrefab);
+        return false;
+    }
 
-		healthBar.character = this;
-		manaBar.character = this;
-		
-		hitPoints.value = startingHitPoints;
-		manaPoints.value = startingManaPoints;
-	}
+    public override void ResetCharacter()
+    {
+        inventory = Instantiate(inventoryPrefab);
+        healthBar = Instantiate(healthBarPrefab);
+        //manaBar = Instantiate(manaBarPrefab);
 
-	public override IEnumerator DamageCharacter(int damage, float interval)
-	{
-		while (true)
-		{
-			StartCoroutine(FlickerCharacter());
+        healthBar.character = this;
+        //manaBar.character = this;
 
-			hitPoints.value -= damage;
-			if (hitPoints.value < float.Epsilon)
-			{
-				KillCharacter();
+        hitPoints.value = StartingHitPoints;
+        manaPoints.value = StartingManaPoints;
+    }
 
-				break;
-			}
+    public override IEnumerator DamageCharacter(int damage, float interval)
+    {
+        while (true)
+        {
+            StartCoroutine(FlickerCharacter());
 
-			if (interval > float.Epsilon)
-				yield return new WaitForSeconds(interval);
-			else
-				break;
-		}
-	}
+            hitPoints.value -= damage;
+            if (hitPoints.value < float.Epsilon)
+            {
+                KillCharacter();
 
-	public override void KillCharacter()
-	{
-		base.KillCharacter();
-		Destroy(healthBar.gameObject);
-		Destroy(manaBar.gameObject);
-		Destroy(inventory.gameObject);
-		SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
-	}
+                break;
+            }
+
+            if (interval > float.Epsilon)
+                yield return new WaitForSeconds(interval);
+            else
+                break;
+        }
+    }
+
+    public override void KillCharacter()
+    {
+        base.KillCharacter();
+        Destroy(healthBar.gameObject);
+        //Destroy(manaBar.gameObject);
+        Destroy(inventory.gameObject);
+        SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+    }
 }

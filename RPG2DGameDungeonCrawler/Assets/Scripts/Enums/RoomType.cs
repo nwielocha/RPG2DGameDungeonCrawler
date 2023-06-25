@@ -2,6 +2,6 @@ public enum RoomType
 {
     Start,
     Boss,
-    Treasure,
+    Shop,
     Normal,
 }

@@ -6,67 +6,76 @@ using UnityEngine;
 
 public class DungeonController : IInstancer
 {
-    private GameObject _roomPrefab;
-    public DungeonComponent Dungeon { get; private set; }
-    private DungeonGenerator _generator;
+    public static DungeonController Instance;
 
-    public DungeonController(DungeonComponent dungeon)
+    public DungeonController()
     {
-        _roomPrefab = LevelController.MainGameObject.GetComponent<LevelController>().RoomPrefab;
-        Dungeon = dungeon;
-        _generator = new DungeonGenerator(this);
+        Instance = this;
+        new DungeonGenerator();
     }
 
     public void AddRoom(RoomComponent room)
     {
-        Dungeon.Rooms.Add(room);
+        DungeonComponent.Instance.Rooms.Add(room);
     }
 
     public int CountRooms()
     {
-        return Dungeon.Rooms.Count;
+        return DungeonComponent.Instance.Rooms.Count;
     }
 
     public RoomComponent GetRoom(int index)
     {
-        return Dungeon.Rooms[index];
-    }
-
-    public void ClearAllRooms()
-    {
-        Dungeon.Rooms.Clear();
+        return DungeonComponent.Instance.Rooms[index];
     }
 
     public void GenerateRooms()
     {
-        _generator.GenerateRooms();
+        DungeonGenerator.Instance.GenerateRooms();
     }
 
     public bool DoRoomExist(int x, int y)
     {
-        return Dungeon.Rooms.Any(r => r.Pos.x == x && r.Pos.y == y);
+        return DungeonComponent.Instance.Rooms.Any(r => r.Pos.x == x && r.Pos.y == y);
     }
 
-    public uint CountNeighbours(Position pos)
+    public int CountNeighbours(Position pos)
     {
-        int x = pos.x, y = pos.y;
-        List<RoomComponent> allNeigbours = Dungeon.Rooms.FindAll(r => (r.Pos.x == x + 1 && r.Pos.y == y) || 
-                                                                        (r.Pos.x == x - 1 && r.Pos.y == y) ||
-                                                                        (r.Pos.x == x && r.Pos.y == y + 1) ||
-                                                                        (r.Pos.x == x && r.Pos.y == y - 1));
+        int x = pos.x,
+            y = pos.y;
 
-        return (uint) allNeigbours.Count;
+        List<RoomComponent> allNeigbours = DungeonComponent.Instance.Rooms.FindAll(
+            r =>
+                (r.Pos.x == x + 1 && r.Pos.y == y)
+                || (r.Pos.x == x - 1 && r.Pos.y == y)
+                || (r.Pos.x == x && r.Pos.y == y + 1)
+                || (r.Pos.x == x && r.Pos.y == y - 1)
+        );
+
+        return allNeigbours.Count;
     }
 
-    public bool DirectionNeigbour(RoomComponent room, Directions direction)
+    public bool NeighbourAtDirection(RoomComponent room, Directions direction)
     {
-        return Dungeon.Rooms.Any(r => r.Pos.x == room.Pos.x + (int) direction / 10 && r.Pos.y == room.Pos.y + (int) direction % 10);
+        return DungeonComponent.Instance.Rooms.Any(
+            r =>
+                r.Pos.x == room.Pos.x + (int)direction / 10
+                && r.Pos.y == room.Pos.y + (int)direction % 10
+        );
     }
 
     public void PlaceOnMap()
     {
-        foreach(RoomComponent r in Dungeon.Rooms){
-            var room = UnityEngine.Object.Instantiate(_roomPrefab, new Vector3(RoomComponent.Width * r.Pos.x, RoomComponent.Height * r.Pos.y, 0), Quaternion.identity);
+        foreach (RoomComponent r in DungeonComponent.Instance.Rooms)
+        {
+            GameObject roomPrefab = LevelController.Instance.RoomPrefab;
+
+            var room = UnityEngine.Object.Instantiate(
+                roomPrefab,
+                new Vector3(RoomComponent.Width * r.Pos.x, RoomComponent.Height * r.Pos.y, 0),
+                Quaternion.identity
+            );
+
             var roomController = room.GetComponent<RoomController>();
             roomController.Room = r;
         }

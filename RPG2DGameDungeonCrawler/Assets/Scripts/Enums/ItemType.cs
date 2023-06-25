@@ -1,6 +1,6 @@
 public enum ItemType
 {
-	COIN,
-	HEALTH,
-	MANA
+    Coin,
+    Health,
+    Mana
 }

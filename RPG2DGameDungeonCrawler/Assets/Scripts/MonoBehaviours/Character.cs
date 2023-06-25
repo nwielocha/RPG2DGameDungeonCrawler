@@ -3,32 +3,32 @@ using UnityEngine;
 
 public abstract class Character : MonoBehaviour
 {
-	public float maxHitPoints;
-	public float startingHitPoints;
+    public float MaxHitPoints;
+    public float StartingHitPoints;
 
-	public float maxManaPoints;
-	public float startingManaPoints;
-	public bool LockControlls { get; set; }
+    public float MaxManaPoints;
+    public float StartingManaPoints;
+    public bool LockControlls { get; set; }
 
-	void Start()
-	{
-		LockControlls = false;
-	}
-	
-	public virtual void KillCharacter()
-	{
-		Destroy(gameObject);
-	}
+    void Start()
+    {
+        LockControlls = false;
+    }
 
-	public abstract void ResetCharacter();
-	public abstract IEnumerator DamageCharacter(int damage, float interval); // koprocedura
+    public virtual void KillCharacter()
+    {
+        Destroy(gameObject);
+    }
 
-	public virtual IEnumerator FlickerCharacter()
-	{
-		GetComponent<SpriteRenderer>().color = Color.red;
+    public abstract void ResetCharacter();
+    public abstract IEnumerator DamageCharacter(int damage, float interval); // koprocedura
 
-		yield return new WaitForSeconds(0.1f);
+    public virtual IEnumerator FlickerCharacter()
+    {
+        GetComponent<SpriteRenderer>().color = Color.red;
 
-		GetComponent<SpriteRenderer>().color = Color.white;
-	}
+        yield return new WaitForSeconds(0.1f);
+
+        GetComponent<SpriteRenderer>().color = Color.white;
+    }
 }

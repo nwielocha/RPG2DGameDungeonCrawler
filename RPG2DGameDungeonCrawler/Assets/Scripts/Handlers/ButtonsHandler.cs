@@ -5,8 +5,8 @@ using UnityEngine;
 public abstract class ButtonsHandler : MonoBehaviour
 {
     private ButtonsController _buttonsController;
-    
-    public void Start()
+
+    void Start()
     {
         _buttonsController = gameObject.GetComponent<ButtonsController>();
     }

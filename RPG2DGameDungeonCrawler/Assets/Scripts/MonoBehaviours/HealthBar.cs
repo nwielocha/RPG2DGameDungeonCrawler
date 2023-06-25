@@ -3,38 +3,39 @@ using UnityEngine.UI;
 
 public class HealthBar : MonoBehaviour
 {
-	public Points hitPoints;
-	[HideInInspector]
-	public Player character;
-	public Image[] heartImages;
-	public Sprite fullHeart, emptyHeart;
-	float maxHitPoints;
+    public Points hitPoints;
 
-	void Start()
-	{
-		maxHitPoints = character.maxHitPoints;
-	}
+    [HideInInspector]
+    public Player character;
+    public Image[] heartImages;
+    public Sprite fullHeart,
+        emptyHeart;
+    private float _maxHitPoints;
 
-	void Update()
-	{
-		if (character != null)
-		{
-			if (hitPoints.value > maxHitPoints)
-				hitPoints.value = maxHitPoints;
+    void Start()
+    {
+        _maxHitPoints = character.MaxHitPoints;
+    }
 
-			for (int i = 0; i < heartImages.Length; i++)
-			{
-				if (i < hitPoints.value)
-					heartImages[i].sprite = fullHeart;
-				else
-					heartImages[i].sprite = emptyHeart;
+    void Update()
+    {
+        if (character != null)
+        {
+            if (hitPoints.value > _maxHitPoints)
+                hitPoints.value = _maxHitPoints;
 
-				if (i < maxHitPoints)
-					heartImages[i].enabled = true;
-				else
-					heartImages[i].enabled = false;
-			}
-		}
+            for (int i = 0; i < heartImages.Length; i++)
+            {
+                if (i < hitPoints.value)
+                    heartImages[i].sprite = fullHeart;
+                else
+                    heartImages[i].sprite = emptyHeart;
 
-	}
+                if (i < _maxHitPoints)
+                    heartImages[i].enabled = true;
+                else
+                    heartImages[i].enabled = false;
+            }
+        }
+    }
 }

@@ -3,91 +3,108 @@ using System.Linq;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class DungeonGenerator
 {
-    private DungeonController _controller;
-    private uint _mainRooms;
-    private uint _adjecentRooms;
+    public static DungeonGenerator Instance;
+    private int _mainRooms;
+    private int _adjecentRooms;
 
-    public DungeonGenerator(DungeonController controller)
+    public DungeonGenerator()
     {
-        _controller = controller;
+        Instance = this;
     }
 
     public void GenerateRooms()
     {
         (_mainRooms, _adjecentRooms) = PartitionRooms();
-        
-        _controller.ClearAllRooms();
         GenerateMainRooms();
         GenerateAdjRooms();
     }
 
     private void GenerateMainRooms()
     {
-        RoomComponent startingRoom = new RoomComponent(new Position(0, 0), _controller.Dungeon, RoomType.Start);
-        RoomComponent current = startingRoom;
-        _controller.AddRoom(startingRoom);
-        uint generated = 1;
+        RoomComponent startingRoom = new RoomComponent(new Position(0, 0), RoomType.Start);
+        RoomComponent currentRoom = startingRoom;
+        DungeonController.Instance.AddRoom(startingRoom);
 
-        do {
-            RoomComponent room = GenerateNextRoom(current.Pos);
-            if(room != null && _controller.CountNeighbours(room.Pos) <= 1)
+        int generated = 1;
+        do
+        {
+            RoomComponent room = GenerateNextRoom(currentRoom.Pos);
+            if (room != null && DungeonController.Instance.CountNeighbours(room.Pos) <= 1)
             {
-                _controller.AddRoom(room);
-                current = room;
+                DungeonController.Instance.AddRoom(room);
+                currentRoom = room;
                 generated++;
-            }
-        } while(generated < _mainRooms);
 
-        RoomComponent lastRoom = _controller.GetRoom(_controller.CountRooms() - 1);
-        lastRoom.Type = RoomType.Boss;
+                if (generated == _mainRooms)
+                {
+                    currentRoom.Type = RoomType.Boss;
+                }
+            }
+        } while (generated < _mainRooms);
     }
 
     private void GenerateAdjRooms()
     {
-        uint generated = 0;
-        RoomComponent current;
+        RoomComponent currentRoom = null;
+        int generated = 0;
+        do
+        {
+            int subGroupRooms = (int)
+                Math.Floor((double)UnityEngine.Random.Range(1, _adjecentRooms - generated));
+            int randIndex = (int)
+                Math.Floor(
+                    (double)UnityEngine.Random.Range(0, DungeonController.Instance.CountRooms() - 1)
+                );
+            currentRoom = DungeonController.Instance.GetRoom(randIndex);
 
-        do {
-            uint partialNumber = (uint) Math.Floor((double) UnityEngine.Random.Range(1, _adjecentRooms - generated));
-            uint subGenerated = 0;
-            int index = (int) Math.Floor((double) UnityEngine.Random.Range(0, _controller.CountRooms() - 1));
-            current = _controller.GetRoom(index);
-            do {
-                RoomComponent room = GenerateNextRoom(current.Pos);
-                if(room != null)
+            int subGenerated = 0;
+            do
+            {
+                RoomComponent room = GenerateNextRoom(currentRoom.Pos);
+                if (room != null)
                 {
-                    _controller.AddRoom(room);
-                    current = room;
+                    DungeonController.Instance.AddRoom(room);
+                    currentRoom = room;
                     subGenerated++;
                     generated++;
+                    if (generated == _adjecentRooms)
+                    {
+                        currentRoom.Type = RoomType.Shop;
+                    }
                 }
-            } while(subGenerated < partialNumber && _controller.CountNeighbours(current.Pos) <= 3);
-        } while(generated < _adjecentRooms);
-        
-        RoomComponent lastRoom = _controller.GetRoom(_controller.CountRooms() - 1);
-        lastRoom.Type = RoomType.Treasure;
+            } while (
+                subGenerated < subGroupRooms
+                && DungeonController.Instance.CountNeighbours(currentRoom.Pos) <= 3
+            );
+        } while (generated < _adjecentRooms);
     }
 
     private RoomComponent GenerateNextRoom(Position pos)
     {
         Array directions = Enum.GetValues(typeof(Directions));
-        int index = UnityEngine.Random.Range(0, directions.Length - 1);
-        int rDir = (int) directions.GetValue(index);
+        int randIndex = UnityEngine.Random.Range(0, directions.Length - 1);
+        int randDir = (int)directions.GetValue(randIndex);
 
-        if(!_controller.DoRoomExist(pos.x + rDir / 10, pos.y + rDir % 10))
-            return new RoomComponent(new Position(pos.x + rDir / 10, pos.y + rDir % 10), _controller.Dungeon, RoomType.Normal);
+        if (!DungeonController.Instance.DoRoomExist(pos.x + randDir / 10, pos.y + randDir % 10))
+        {
+            return new RoomComponent(
+                new Position(pos.x + randDir / 10, pos.y + randDir % 10),
+                RoomType.Normal
+            );
+        }
+
         return null;
     }
 
-    private (uint, uint) PartitionRooms()
+    private (int, int) PartitionRooms()
     {
-        uint total = _controller.Dungeon.RoomsNumber;
         double adjRoomsPercentage = 0.2;
-
-        uint adj = (uint) Math.Floor(total * adjRoomsPercentage);
-        uint main = total - adj;
+        int total = DungeonComponent.Instance.RoomsCount;
+        int adj = (int)Math.Floor(total * adjRoomsPercentage);
+        int main = total - adj;
 
         return (main, adj);
     }
