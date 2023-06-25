@@ -5,7 +5,6 @@ public abstract class Character : MonoBehaviour
 {
     public float MaxHitPoints;
     public float StartingHitPoints;
-
     public float MaxManaPoints;
     public float StartingManaPoints;
     public bool LockControlls { get; set; }

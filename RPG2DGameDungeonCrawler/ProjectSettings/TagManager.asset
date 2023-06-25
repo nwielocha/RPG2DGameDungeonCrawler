@@ -10,6 +10,7 @@ TagManager:
   - Obstacle
   - Ammo
   - EnemyAmmo
+  - Boss
   layers:
   - Default
   - TransparentFX

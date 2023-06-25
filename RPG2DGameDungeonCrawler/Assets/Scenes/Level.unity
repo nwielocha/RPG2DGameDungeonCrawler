@@ -405,6 +405,14 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 8510481645752400582, guid: 0537a7fc5e5654d4d994345b18f5a4e8, type: 3}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
+      propertyPath: BossPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 8510481645752400582, guid: 0537a7fc5e5654d4d994345b18f5a4e8, type: 3}
+    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
+      propertyPath: BossPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 8510481645752400582, guid: 0537a7fc5e5654d4d994345b18f5a4e8, type: 3}
+    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: LootPrefabs.Array.data[0]
       value: 
       objectReference: {fileID: 6317426292550072666, guid: bb569222487c326499b6fe9bb975f8e8, type: 3}
@@ -430,7 +438,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: ShopItemPrefabs.Array.size
-      value: 0
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: ObstaclesPrefab.Array.data[0]
@@ -472,6 +480,18 @@ PrefabInstance:
       propertyPath: ObstaclesPrefab.Array.data[9]
       value: 
       objectReference: {fileID: 7656783502677599325, guid: ebbc18d8d2a7d9c4d8229204cb111356, type: 3}
+    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
+      propertyPath: ShopItemPrefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 4593918163657927737, guid: db89ed8e9bce3f945bada328c17cd07f, type: 3}
+    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
+      propertyPath: ShopItemPrefabs.Array.data[1]
+      value: 
+      objectReference: {fileID: 4593918163657927737, guid: db89ed8e9bce3f945bada328c17cd07f, type: 3}
+    - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
+      propertyPath: ShopItemPrefabs.Array.data[2]
+      value: 
+      objectReference: {fileID: 4593918163657927737, guid: db89ed8e9bce3f945bada328c17cd07f, type: 3}
     - target: {fileID: 2192900156778581782, guid: ff3b1d7c4a9209749a81e99ff351522c, type: 3}
       propertyPath: ObstaclesPrefab.Array.data[10]
       value: 

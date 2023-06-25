@@ -12,6 +12,9 @@ public class RoomController : MonoBehaviour
     public RoomComponent Room { get; set; }
     public GameObject ObstacleObject { get; set; }
     public GameObject LootObject { get; set; }
+    public GameObject BossObject { get; set; }
+    public GameObject ShopObject { get; set; }
+    public List<GameObject> ShopObjects { get; } = new List<GameObject>();
     public List<GameObject> DoorObjects { get; } = new List<GameObject>();
     public List<GameObject> EnemyObjects { get; } = new List<GameObject>();
 
@@ -91,7 +94,29 @@ public class RoomController : MonoBehaviour
 
     public void DeleteRoomObject()
     {
-        // delete other dependent objects
+        GameObject.Destroy(BossObject);
+        GameObject.Destroy(LootObject);
+        GameObject.Destroy(ShopObject);
+        GameObject.Destroy(ObstacleObject);
+
+        foreach (GameObject door in DoorObjects)
+        {
+            GameObject.Destroy(door);
+        }
+        DoorObjects.Clear();
+
+        foreach (GameObject shop in ShopObjects)
+        {
+            GameObject.Destroy(shop);
+        }
+        ShopObjects.Clear();
+
+        foreach (GameObject enemy in EnemyObjects)
+        {
+            GameObject.Destroy(enemy);
+        }
+        EnemyObjects.Clear();
+
         GameObject.Destroy(gameObject);
     }
 }

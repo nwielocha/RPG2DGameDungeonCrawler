@@ -170,10 +170,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3677eeef9801c824db09429fbd294e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 2
-  startingHitPoints: 2
-  maxManaPoints: 0
-  startingManaPoints: 0
+  MaxHitPoints: 2
+  StartingHitPoints: 1
+  MaxManaPoints: 0
+  StartingManaPoints: 0
   damageStrength: 1
   enemyType: 1
   enemyAmmoPrefab: {fileID: 2610649183938613770, guid: a629962d715e45d4fa14518ac62b3603, type: 3}
@@ -181,6 +181,8 @@ MonoBehaviour:
   distanceToShoot: 5
   distanceToStop: 3
   fireRate: 0.5
+  target: {fileID: 0}
+  rotateSpeed: 0.0025
 --- !u!58 &501375753
 CircleCollider2D:
   m_ObjectHideFlags: 0

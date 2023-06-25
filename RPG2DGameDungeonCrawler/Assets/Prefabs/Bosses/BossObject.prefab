@@ -18,7 +18,7 @@ GameObject:
   - component: {fileID: 7276638278346885197}
   m_Layer: 8
   m_Name: BossObject
-  m_TagString: Enemy
+  m_TagString: Boss
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -170,13 +170,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3677eeef9801c824db09429fbd294e61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHitPoints: 2
-  startingHitPoints: 2
-  maxManaPoints: 0
-  startingManaPoints: 0
+  MaxHitPoints: 10
+  StartingHitPoints: 10
+  MaxManaPoints: 0
+  StartingManaPoints: 0
   damageStrength: 1
   enemyType: 0
-  ammoPrefab: {fileID: 0}
+  enemyAmmoPrefab: {fileID: 0}
+  speed: 3
+  distanceToShoot: 5
+  distanceToStop: 3
+  fireRate: 0
+  target: {fileID: 0}
+  rotateSpeed: 0.0025
 --- !u!58 &501375753
 CircleCollider2D:
   m_ObjectHideFlags: 0

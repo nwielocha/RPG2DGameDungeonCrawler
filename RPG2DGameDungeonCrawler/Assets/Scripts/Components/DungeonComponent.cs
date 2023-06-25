@@ -29,12 +29,16 @@ public class DungeonComponent
     {
         Clear();
         CalcRoomsCount();
+        Rooms.Clear();
         DungeonController.Instance.GenerateRooms();
         DungeonController.Instance.PlaceOnMap();
     }
 
     private void Clear()
     {
-        // implement method for clearing all dependencies
+        foreach (RoomComponent room in Rooms)
+        {
+            room.Controller.DeleteRoomObject();
+        }
     }
 }

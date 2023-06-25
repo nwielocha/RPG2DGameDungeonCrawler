@@ -25,6 +25,11 @@ public class Player : Character
             LevelController.Pause();
             LockControlls = true;
         }
+
+        if (Input.GetKeyDown("g"))
+        {
+            LevelController.Instance.NextLevel();
+        }
     }
 
     void OnTriggerEnter2D(Collider2D collision)
