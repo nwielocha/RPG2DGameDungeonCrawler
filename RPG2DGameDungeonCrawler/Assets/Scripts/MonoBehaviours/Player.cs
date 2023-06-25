@@ -4,127 +4,125 @@ using UnityEngine.SceneManagement;
 
 public class Player : Character
 {
-    public Points hitPoints;
-    public Points manaPoints;
-    public HealthBar healthBarPrefab;
-    public ManaBar manaBarPrefab;
-    public Inventory inventoryPrefab;
-    HealthBar healthBar;
-    ManaBar manaBar;
-    public Inventory inventory;
+	public Points hitPoints;
+	public Points manaPoints;
+	public HealthBar healthBarPrefab;
+	public ManaBar manaBarPrefab;
+	public Inventory inventoryPrefab;
+	HealthBar healthBar;
+	ManaBar manaBar;
+	public Inventory inventory;
+	MovementController movementController;
 
-    private void OnEnable()
-    {
-        ResetCharacter();
-    }
+	private void OnEnable()
+	{
+		ResetCharacter();
+	}
 
-    public void Update()
-    {
-        if (Input.GetKeyDown("p"))
-        {
-            LevelController.Pause();
-            LockControlls = true;
-        }
-    }
+	public void Update()
+	{
+		if (Input.GetKeyDown(KeyCode.P))
+		{
+			LevelController.Pause();
+			LockControlls = true;
+		}
+		else if (Input.GetKeyDown(KeyCode.Q))
+		{
 
-    void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.gameObject.CompareTag("CanBePickedUp"))
-        {
-            Item hitObject = collision.gameObject.GetComponent<Consumable>().item;
-            if (hitObject != null)
-            {
-                print("Kolizja: " + hitObject.name);
-                bool shouldDisappear = false;
-                switch (hitObject.itemType)
-                {
-                    case ItemType.Coin:
-                        shouldDisappear = inventory.AddItem(hitObject);
-                        break;
-                    case ItemType.Health:
-                        shouldDisappear = AdjustHitPoints(hitObject.quantity);
-                        break;
-                    case ItemType.Mana:
-                        shouldDisappear = AdjustManaPoints(hitObject.quantity);
-                        break;
-                    default:
-                        break;
-                }
+			if (inventory.RemoveSpeedPotion(1))
+			{
+				movementController.isSpeedChanged = true;
+			}
+		}
+	}
 
-                if (shouldDisappear)
-                {
-                    collision.gameObject.SetActive(false);
-                }
-            }
-        }
-    }
 
-    public bool AdjustHitPoints(int amount)
-    {
-        if (hitPoints.value < MaxHitPoints)
-        {
-            hitPoints.value += amount;
-            print("Nowe punkty: " + amount + ". Razem: " + hitPoints.value);
+	void OnTriggerEnter2D(Collider2D collision)
+	{
+		if (collision.gameObject.CompareTag("CanBePickedUp"))
+		{
+			Item hitObject = collision.gameObject.GetComponent<Consumable>().item;
+			if (hitObject != null)
+			{
+				print("Kolizja: " + hitObject.name);
+				bool shouldDisappear = false;
+				switch (hitObject.itemType)
+				{
+					case ItemType.Coin:
+						shouldDisappear = inventory.AddItem(hitObject);
+						break;
+					case ItemType.Health:
+						shouldDisappear = AdjustHitPoints(hitObject.quantity);
+						break;
+					case ItemType.SpeedPotion:
+						shouldDisappear = inventory.AddItem(hitObject);
+						break;
+					default:
+						break;
+				}
 
-            return true;
-        }
+				if (shouldDisappear)
+				{
+					collision.gameObject.SetActive(false);
+				}
+			}
+		}
+	}
 
-        return false;
-    }
+	public bool AdjustHitPoints(int amount)
+	{
+		if (hitPoints.value < MaxHitPoints)
+		{
+			hitPoints.value += amount;
+			print("Nowe punkty: " + amount + ". Razem: " + hitPoints.value);
 
-    public bool AdjustManaPoints(int amount)
-    {
-        if (manaPoints.value < MaxManaPoints)
-        {
-            manaPoints.value += amount;
-            print("Nowe punkty: " + amount + ". Razem: " + hitPoints.value);
+			return true;
+		}
 
-            return true;
-        }
+		return false;
+	}
 
-        return false;
-    }
+	public override void ResetCharacter()
+	{
+		movementController = GetComponent<MovementController>();
+		inventory = Instantiate(inventoryPrefab);
+		healthBar = Instantiate(healthBarPrefab);
+		//manaBar = Instantiate(manaBarPrefab);
 
-    public override void ResetCharacter()
-    {
-        inventory = Instantiate(inventoryPrefab);
-        healthBar = Instantiate(healthBarPrefab);
-        //manaBar = Instantiate(manaBarPrefab);
+		healthBar.character = this;
+		//manaBar.character = this;
 
-        healthBar.character = this;
-        //manaBar.character = this;
+		hitPoints.value = StartingHitPoints;
+		manaPoints.value = StartingManaPoints;
+	}
 
-        hitPoints.value = StartingHitPoints;
-        manaPoints.value = StartingManaPoints;
-    }
+	public override IEnumerator DamageCharacter(int damage, float interval)
+	{
+		while (true)
+		{
+			StartCoroutine(FlickerCharacter());
 
-    public override IEnumerator DamageCharacter(int damage, float interval)
-    {
-        while (true)
-        {
-            StartCoroutine(FlickerCharacter());
+			hitPoints.value -= damage;
+			if (hitPoints.value < float.Epsilon)
+			{
+				KillCharacter();
 
-            hitPoints.value -= damage;
-            if (hitPoints.value < float.Epsilon)
-            {
-                KillCharacter();
+				break;
+			}
 
-                break;
-            }
+			if (interval > float.Epsilon)
+				yield return new WaitForSeconds(interval);
+			else
+				break;
+		}
+	}
 
-            if (interval > float.Epsilon)
-                yield return new WaitForSeconds(interval);
-            else
-                break;
-        }
-    }
-
-    public override void KillCharacter()
-    {
-        base.KillCharacter();
-        Destroy(healthBar.gameObject);
-        //Destroy(manaBar.gameObject);
-        Destroy(inventory.gameObject);
-        SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
-    }
+	public override void KillCharacter()
+	{
+		base.KillCharacter();
+		Destroy(healthBar.gameObject);
+		//Destroy(manaBar.gameObject);
+		Destroy(inventory.gameObject);
+		SceneManager.LoadScene("GameOver", LoadSceneMode.Single);
+	}
 }

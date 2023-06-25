@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4858844693857152098}
   - component: {fileID: 4858844693857152097}
   m_Layer: 7
-  m_Name: EnergyPotionObject
+  m_Name: SpeedPotionObject
   m_TagString: CanBePickedUp
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -136,4 +136,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 92f572bb9403f5941a786294e411712c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  item: {fileID: 0}
+  item: {fileID: 11400000, guid: 6c4400f44a0198f4783604770391887f, type: 2}

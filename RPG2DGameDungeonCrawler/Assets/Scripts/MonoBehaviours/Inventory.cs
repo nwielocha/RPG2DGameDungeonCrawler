@@ -25,6 +25,10 @@ public class Inventory : MonoBehaviour
         {
             if (items[i] != null)
             {
+                if (items[i].itemType == ItemType.SpeedPotion)
+                {
+                    itemImages[i].transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                }
                 Debug.Log(items[i].quantity);
                 Slot slotScript = slots[i].GetComponent<Slot>();
                 Text quantityText = slotScript.qtyText;
@@ -89,6 +93,24 @@ public class Inventory : MonoBehaviour
             }
         }
     }
+
+    public bool RemoveSpeedPotion(int amount)
+    {
+        foreach (Item item in items)
+        {
+            if (item != null)
+            {
+                if (item.itemType == ItemType.SpeedPotion && item.quantity > 0)
+                {
+                    item.quantity -= amount;
+
+                    return true;
+                }
+            }
+        }
+
+        return false;
+    }    
 
     public bool AddItem(Item itemToAdd)
     {
