@@ -31,6 +31,14 @@ public class Player : Character
         {
             LevelController.Instance.NextLevel();
         }
+
+		if (Input.GetKeyDown("q"))
+		{
+			if (inventory.RemoveSpeedPotion(1))
+			{
+				movementController.isSpeedChanged = true;
+			}
+		}
     }
 
 
