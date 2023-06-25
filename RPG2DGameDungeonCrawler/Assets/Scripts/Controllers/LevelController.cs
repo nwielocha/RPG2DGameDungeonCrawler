@@ -16,6 +16,7 @@ public class LevelController : MonoBehaviour
     public List<GameObject> BossPrefabs = new List<GameObject>();
     public List<GameObject> ShopItemPrefabs = new List<GameObject>();
     public int LevelNumber { get; private set; } = 0;
+    public bool IsPaused { get; private set; } = false;
 
     void Awake()
     {
@@ -32,12 +33,14 @@ public class LevelController : MonoBehaviour
     public static void Pause()
     {
         Time.timeScale = 0;
+        LevelController.Instance.IsPaused = true;
         LevelController.Instance.PauseCanvas.SetActive(true);
     }
 
     public static void UnPause()
     {
         LevelController.Instance.PauseCanvas.SetActive(false);
+        LevelController.Instance.IsPaused = false;
         Time.timeScale = 1;
     }
 

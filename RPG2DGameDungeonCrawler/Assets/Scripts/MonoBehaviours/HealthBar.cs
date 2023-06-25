@@ -19,6 +19,15 @@ public class HealthBar : MonoBehaviour
 
     void Update()
     {
+        if (LevelController.Instance.IsPaused)
+        {
+            gameObject.GetComponent<Canvas>().enabled = false;
+        }
+        else
+        {
+            gameObject.GetComponent<Canvas>().enabled = true;
+        }
+
         if (character != null)
         {
             if (hitPoints.value > _maxHitPoints)

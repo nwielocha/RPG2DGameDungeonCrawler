@@ -175,12 +175,12 @@ MonoBehaviour:
   MaxManaPoints: 0
   StartingManaPoints: 0
   damageStrength: 1
-  enemyType: 0
-  enemyAmmoPrefab: {fileID: 0}
+  enemyType: 1
+  enemyAmmoPrefab: {fileID: 2610649183938613770, guid: a629962d715e45d4fa14518ac62b3603, type: 3}
   speed: 3
   distanceToShoot: 5
   distanceToStop: 3
-  fireRate: 0
+  fireRate: 0.4
   target: {fileID: 0}
   rotateSpeed: 0.0025
 --- !u!58 &501375753

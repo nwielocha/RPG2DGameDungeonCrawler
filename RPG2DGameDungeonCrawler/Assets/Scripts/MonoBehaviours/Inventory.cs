@@ -23,25 +23,48 @@ public class Inventory : MonoBehaviour
     {
         for (int i = 0; i < items.Length; i++)
         {
-            if (items[i] != null)
+            if (LevelController.Instance.IsPaused && items[i] != null)
             {
                 if (items[i].itemType == ItemType.SpeedPotion)
                 {
-                    itemImages[i].transform.localScale = new Vector3(0.3f, 0.3f, 0.3f);
+                    itemImages[i].transform.localScale = new Vector3(0f, 0f, 0f);
                 }
-                Debug.Log(items[i].quantity);
+                else if (items[i].itemType == ItemType.Coin)
+                {
+                    itemImages[i].transform.localScale = new Vector3(0f, 0f, 0f);
+                }
                 Slot slotScript = slots[i].GetComponent<Slot>();
                 Text quantityText = slotScript.qtyText;
-                if (items[i].quantity > 0)
+                quantityText.transform.localScale = new Vector3(0f, 0f, 0f);
+            }
+            else
+            {
+                if (items[i] != null)
                 {
-                    itemImages[i].enabled = true;
-                    quantityText.enabled = true;
-                    quantityText.text = items[i].quantity.ToString();
-                }
-                else
-                {
-                    quantityText.enabled = false;
-                    itemImages[i].enabled = false;
+                    if (items[i].itemType == ItemType.SpeedPotion)
+                    {
+                        itemImages[i].transform.localScale = new Vector3(0.6f, 0.6f, 0.6f);
+                    }
+                    else if (items[i].itemType == ItemType.Coin)
+                    {
+                        itemImages[i].transform.localScale = new Vector3(1.5f, 1.5f, 0.0f);
+                    }
+
+                    Slot slotScript = slots[i].GetComponent<Slot>();
+                    Text quantityText = slotScript.qtyText;
+                    quantityText.transform.localScale = new Vector3(1.5f, 1.5f, 1.5f);
+
+                    if (items[i].quantity > 0)
+                    {
+                        itemImages[i].enabled = true;
+                        quantityText.enabled = true;
+                        quantityText.text = items[i].quantity.ToString();
+                    }
+                    else
+                    {
+                        quantityText.enabled = false;
+                        itemImages[i].enabled = false;
+                    }
                 }
             }
         }
@@ -57,6 +80,9 @@ public class Inventory : MonoBehaviour
                 newSlot.name = "ItemSlot_" + i;
                 newSlot.transform.SetParent(gameObject.transform.GetChild(0).transform); // obiekt podrzedny: InventoryBackground
                 slots[i] = newSlot;
+                Slot slotScript = slots[i].GetComponent<Slot>();
+                Text quantityText = slotScript.qtyText;
+                quantityText.transform.position += new Vector3(25f, 0f, 0f);
                 itemImages[i] = newSlot.transform.GetChild(1).GetComponent<Image>(); // obiekt podrzedny: ItemImage
             }
         }
@@ -110,7 +136,7 @@ public class Inventory : MonoBehaviour
         }
 
         return false;
-    }    
+    }
 
     public bool AddItem(Item itemToAdd)
     {

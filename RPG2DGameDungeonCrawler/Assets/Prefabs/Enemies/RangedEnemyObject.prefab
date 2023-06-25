@@ -180,7 +180,7 @@ MonoBehaviour:
   speed: 3
   distanceToShoot: 5
   distanceToStop: 3
-  fireRate: 0.5
+  fireRate: 1
   target: {fileID: 0}
   rotateSpeed: 0.0025
 --- !u!58 &501375753
