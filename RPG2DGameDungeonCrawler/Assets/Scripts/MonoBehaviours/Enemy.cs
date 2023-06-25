@@ -93,8 +93,15 @@ public class Enemy : Character
             hitPoints -= damage;
             if (hitPoints <= float.Epsilon) // najmniejsza liczba wieksza od zera
             {
-                KillCharacter();
-                RmController.EnemyObjects.Remove(gameObject);
+                if (gameObject.tag == "Boss")
+                {
+                    LevelController.Instance.NextLevel();
+                }
+                else
+                {
+                    KillCharacter();
+                    RmController.EnemyObjects.Remove(gameObject);
+                }
                 break;
             }
 

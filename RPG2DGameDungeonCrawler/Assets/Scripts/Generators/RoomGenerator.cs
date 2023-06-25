@@ -38,6 +38,18 @@ public class RoomGenerator
         }
     }
 
+    public GameObject RandomPrefab(string propName)
+    {
+        object obj = LevelController.Instance
+            .GetType()
+            .GetField(propName)
+            .GetValue(LevelController.Instance);
+        List<GameObject> arr = (List<GameObject>)obj;
+        int index = (int)UnityEngine.Random.Range(0, arr.Count);
+
+        return arr[index];
+    }
+
     public void GenerateObstacles()
     {
         RoomComponent room = _roomController.Room;
@@ -50,27 +62,28 @@ public class RoomGenerator
         _roomController.ObstacleObject = created;
     }
 
-    public GameObject RandomPrefab(string propName)
-    {
-        object obj = LevelController.Instance
-            .GetType()
-            .GetField(propName)
-            .GetValue(LevelController.Instance);
-        List<GameObject> arr = (List<GameObject>)obj;
-        int index = (int)UnityEngine.Random.Range(0, arr.Count - 1);
-
-        return arr[index];
-    }
-
     public void GenerateTreasure()
     {
         RoomComponent room = _roomController.Room;
         GameObject shop = LevelController.Instance.ShopPrefab;
+        GameObject potionItem = RandomPrefab("ShopItemPrefabs");
         GameObject created = UnityEngine.Object.Instantiate(
             shop,
             new Vector3(room.Pos.x * RoomComponent.Width, room.Pos.y * RoomComponent.Height, 0),
             Quaternion.identity
         );
+        GameObject potion = created.transform.Find("PotionShopItem").gameObject;
+        GameObject heart = created.transform.Find("HeartShopItem").gameObject;
+        ShopItemController potionController = potion.GetComponent<ShopItemController>();
+        ShopItemController heartController = heart.GetComponent<ShopItemController>();
+        float levelMultiplier = 0.75f;
+        int levelNumber = LevelController.Instance.LevelNumber;
+        int priceBuff = (int)Math.Floor((double)(levelNumber - 1) * levelMultiplier);
+        potionController.Price += priceBuff;
+        potionController.Item = potionItem;
+        heartController.Price += priceBuff;
+
+        _roomController.ShopObject = created;
     }
 
     public void GenerateLoot()
@@ -95,7 +108,30 @@ public class RoomGenerator
         } while (generated < 1);
     }
 
-    public void GenerateBoss() { }
+    public void GenerateBoss()
+    {
+        RoomComponent room = _roomController.Room;
+        GameObject boss = RandomPrefab("BossPrefabs");
+        GameObject created = UnityEngine.Object.Instantiate(
+            boss,
+            new Vector3(room.Pos.x * RoomComponent.Width, room.Pos.y * RoomComponent.Height, 0),
+            Quaternion.identity
+        );
+        created.GetComponent<Wander>().RmController = _roomController;
+        created.GetComponent<Enemy>().RmController = _roomController;
+        int levelNumber = LevelController.Instance.LevelNumber;
+        int healthBuff = levelNumber / 3;
+        float damageBuffChange = (int)UnityEngine.Random.Range(0, 50);
+        int damageBuff = 0;
+        if (levelNumber > damageBuffChange)
+            damageBuff = levelNumber / 40 + 1;
+
+        created.GetComponent<Enemy>().damageStrength += damageBuff;
+        created.GetComponent<Enemy>().MaxHitPoints += healthBuff;
+        created.GetComponent<Enemy>().StartingHitPoints += healthBuff;
+
+        _roomController.BossObject = created;
+    }
 
     public void GenerateEnemies()
     {
@@ -118,6 +154,18 @@ public class RoomGenerator
                 var spawned = spawnPoint.GetComponent<SpawnPoint>().SpawnObject();
                 spawned.GetComponent<Wander>().RmController = _roomController;
                 spawned.GetComponent<Enemy>().RmController = _roomController;
+                int levelNumber = LevelController.Instance.LevelNumber;
+                float healthBuffChance = (int)UnityEngine.Random.Range(0, 15);
+                float damageBuffChance = (int)UnityEngine.Random.Range(0, 15);
+                int damageBuff = 0,
+                    healthBuff = 0;
+                if (levelNumber > damageBuffChance)
+                    damageBuff = levelNumber / 120 + 1;
+                if (levelNumber > healthBuffChance)
+                    healthBuff = levelNumber / 50 + (int)UnityEngine.Random.Range(0, 4);
+                spawned.GetComponent<Enemy>().damageStrength += damageBuff;
+                spawned.GetComponent<Enemy>().MaxHitPoints += healthBuff;
+                spawned.GetComponent<Enemy>().StartingHitPoints += healthBuff;
                 _roomController.EnemyObjects.Add(spawned);
                 generated++;
             }

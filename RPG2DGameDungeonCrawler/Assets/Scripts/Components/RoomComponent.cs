@@ -4,6 +4,7 @@ public class RoomComponent
     public const int Height = 9;
     public Position Pos { get; private set; }
     public RoomType Type { get; set; }
+    public RoomController Controller { get; set; }
 
     public RoomComponent(Position pos)
     {

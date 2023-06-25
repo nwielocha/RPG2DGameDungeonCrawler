@@ -78,6 +78,7 @@ public class DungeonController : IInstancer
 
             var roomController = room.GetComponent<RoomController>();
             roomController.Room = r;
+            r.Controller = roomController;
         }
     }
 }

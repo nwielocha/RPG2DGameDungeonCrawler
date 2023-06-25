@@ -19,22 +19,19 @@ public class Player : Character
 		ResetCharacter();
 	}
 
-	public void Update()
-	{
-		if (Input.GetKeyDown(KeyCode.P))
-		{
-			LevelController.Pause();
-			LockControlls = true;
-		}
-		else if (Input.GetKeyDown(KeyCode.Q))
-		{
+    public void Update()
+    {
+        if (Input.GetKeyDown("p"))
+        {
+            LevelController.Pause();
+            LockControlls = true;
+        }
 
-			if (inventory.RemoveSpeedPotion(1))
-			{
-				movementController.isSpeedChanged = true;
-			}
-		}
-	}
+        if (Input.GetKeyDown("g"))
+        {
+            LevelController.Instance.NextLevel();
+        }
+    }
 
 
 	void OnTriggerEnter2D(Collider2D collision)

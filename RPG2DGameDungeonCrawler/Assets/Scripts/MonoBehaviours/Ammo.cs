@@ -6,7 +6,10 @@ public class Ammo : MonoBehaviour
 
     void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision is BoxCollider2D && collision.gameObject.CompareTag("Enemy"))
+        if (
+            collision is BoxCollider2D
+            && (collision.gameObject.CompareTag("Enemy") || collision.gameObject.CompareTag("Boss"))
+        )
         {
             if (collision.gameObject.TryGetComponent<Enemy>(out var enemy))
             {

@@ -44,11 +44,10 @@ public class LevelController : MonoBehaviour
     public void NextLevel()
     {
         LevelNumber++;
-        if (LevelNumber == int.MaxValue)
-        {
-            // handle running out of range
-        }
-
+        GameObject player = GameObject.FindGameObjectWithTag("Player");
+        player.transform.position = new Vector3(0, 0, 0);
+        GameObject camera = GameObject.FindGameObjectWithTag("MainCamera");
+        camera.transform.position = new Vector3(-0.5f, 0.5f, -10);
         DungeonComponent.Instance.Generate();
     }
 }
