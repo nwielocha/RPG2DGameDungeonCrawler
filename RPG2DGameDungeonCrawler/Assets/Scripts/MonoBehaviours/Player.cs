@@ -27,11 +27,6 @@ public class Player : Character
             LockControlls = true;
         }
 
-        if (Input.GetKeyDown("g"))
-        {
-            LevelController.Instance.NextLevel();
-        }
-
 		if (Input.GetKeyDown("q"))
 		{
 			if (inventory.RemoveSpeedPotion(1))

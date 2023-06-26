@@ -11,6 +11,7 @@ public class HelpOverlayHandler : ButtonsHandler
         {
             case 0:
                 GameObject.Find("HelpCanvas").SetActive(false);
+                GameObject.Find("PauseCanvas").GetComponent<PauseHandler>().IsHelpActive = false;
                 break;
         }
     }
